@@ -116,7 +116,7 @@ namespace IdentityServer
             app.UseStaticFiles();
             // uncomment if you want to support static files xxx
             app.UseIdentityServer();
-            // uncomment if you want to support static files xxx  
+            // uncomment if you want to support static files xxx  xxxx
             // uncomment, if you wan to add an MVC-based UI
             app.UseMvcWithDefaultRoute();
         }
