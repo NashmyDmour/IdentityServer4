@@ -61,7 +61,7 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-
+                // oxxxxxxxxxxxxxxx
                 // options.UserInteraction.LoginUrl = "/Account/Login";
                 //options.UserInteraction.LogoutUrl = "/Account/Logout";
                 options.Authentication = new AuthenticationOptions()
