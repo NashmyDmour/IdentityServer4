@@ -1,0 +1,474 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Big Picture</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
+      
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    
+</head> 
+
+<body class="body-green">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Comsoft Identity Server</span><span class="text-bold"> Docs</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Quick Start</li>
+                </ol>
+                
+                <div class="top-search-box">
+	                 <form class="form-inline search-form justify-content-center" action="" method="get">
+	            
+			            <input type="text" placeholder="Search..." name="search" class="form-control search-input">
+			            
+			            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+			            
+			        </form>
+                </div>
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+               
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="The-Big-Picture" class="doc-section">
+                                <h2 class="section-title">The Big Picture</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Most software applications need to have some knowledge of the user or process that is calling them. The user or process interacting with an application is known as a security principal, and the process of authenticating and authorizing these principals is known as identity management, or simply identity. Simple applications may include all of their identity management within the application, but this approach doesn't scale well with many applications and many kinds of security principals,most modern applications look more or less like this:
+                                    </p>
+
+                                    <img class="img-fluid" src="assets/images/demo/appArch.png" alt="elegant icons" />
+
+                                    <p><br /> The most common interactions are:</p>
+                                    <p>
+                                        <ul class="list">
+                                            <li>Browsers communicate with web applications </li>
+                                            <li>Web applications communicate with web APIs (sometimes on their own, sometimes on behalf of a user)</li>
+                                            <li>Browser-based applications communicate with web APIs</li>
+                                            <li>Native applications communicate with web APIs</li>
+                                            <li>Server-based applications communicate with web APIs</li>
+                                            <li> Web APIs communicate with web APIs (sometimes on their own, sometimes on behalf of a user)</li>
+                                        </ul>
+                                    <p>Typically each and every layer (front-end, middle-tier and back-end) has to protect resources and implement authentication and/or authorization – often against the same user store. </p>
+
+                                    <p> Outsourcing these fundamental security functions to a security token service prevents duplicating that functionality across those applications and endpoints.</p>
+
+
+                                    <p> Restructuring the application to support a security token service leads to the following architecture and protocols:</p>
+                                    <div>
+                                        <img class="img-fluid" src="assets/images/demo/protocols.png" alt="elegant icons" />
+                                    </div>
+
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="Comsoft-Identity-Server" class="doc-section">
+                                <h2 class="section-title">Comsoft Identity Server</h2>
+                                <p>
+                                    Comsoft Identity server consists of three main compnents:
+                                </p>
+                                <p>
+                                    <ul class="list">
+                                        <li> Identity Server 4</li>
+                                        <li>ASP.NET core identity (user Management)</li>
+                                        <li>Customization</li>
+                                    </ul>
+                                </p>
+                                <p>In this section will provide high level brief about these components. as follwoing: </p>
+
+                                <p>For more deatils about these compoenets  <a class="link" href="components.html">Comsoft Identity Server Components</a></p>
+
+                                <div class="section-block" id="Identity-Server-4">
+                                    <h3 class="block-title">1 . Identity Server 4</h3>
+                                    <p>
+                                        IdentityServer is a free, open source OpenID Connect and OAuth 2.0 framework for ASP.NET Core.
+                                        Founded and maintained by Dominick Baier and Brock Allen, IdentityServer4 incorporates all the protocol implementations and extensibility points needed to integrate token-based authentication, single-sign-on and API access control in your applications.
+                                        IdentityServer4 is officially certified by the OpenID Foundation and thus spec-compliant and interoperable. It is part of the .NET Foundation, and operates under their code of conduct. It is licensed under Apache 2 (an OSI approved license).
+                                    </p>
+
+
+                                    <h5 class="block-title">OpenID Connect and OAuth 2.0 – better together</h5>
+                                    <p>
+                                        OpenID Connect and OAuth 2.0 are very similar – in fact OpenID Connect is an extension on top of OAuth 2.0. The two fundamental security concerns, authentication and API access, are combined into a single protocol - often with a single round trip to the security token service.
+
+                                        We believe that the combination of OpenID Connect and OAuth 2.0 is the best approach to secure modern applications for the foreseeable future. IdentityServer4 is an implementation of these two protocols and is highly optimized to solve the typical security problems of today’s mobile, native and web applications.
+                                    </p>
+                                    <h5 class="block-title">Supported Specifications</h5>
+                                    <p>IdentityServer implements the following specifications:</p>
+                                    <h6 class="block-title">OpenID Connect</h6>
+                                    <ul class="simple">
+                                        <li>OpenID Connect Core 1.0 (<a class="reference external" href="http://openid.net/specs/openid-connect-core-1_0.html">spec</a>)</li>
+                                        <li>OpenID Connect Discovery 1.0 (<a class="reference external" href="http://openid.net/specs/openid-connect-discovery-1_0.html">spec</a>)</li>
+                                    </ul>
+                                    <h6 class="block-title">OAuth 2.0</h6>
+                                    <ul class="simple">
+                                        <li>OAuth 2.0 (<a class="reference external" href="http://tools.ietf.org/html/rfc6749">RFC 6749</a>)</li>
+                                        <li>OAuth 2.0 Bearer Token Usage (<a class="reference external" href="http://tools.ietf.org/html/rfc6750">RFC 6750</a>)</li>
+                                        <li>OAuth 2.0 Multiple Response Types (<a class="reference external" href="http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html">spec</a>)</li>
+                                        <li>OAuth 2.0 Form Post Response Mode (<a class="reference external" href="http://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html">spec</a>)</li>
+                                        <li>OAuth 2.0 Token Revocation (<a class="reference external" href="https://tools.ietf.org/html/rfc7009">RFC 7009</a>)</li>
+                                        <li>OAuth 2.0 Token Introspection (<a class="reference external" href="https://tools.ietf.org/html/rfc7662">RFC 7662</a>)</li>
+                                        <li>Proof Key for Code Exchange (<a class="reference external" href="https://tools.ietf.org/html/rfc7636">RFC 7636</a>)</li>
+                                        <li>JSON Web Tokens for Client Authentication (<a class="reference external" href="https://tools.ietf.org/html/rfc7523">RFC 7523</a>)</li>
+                                        <li>OAuth 2.0 Device Authorization Grant (<a class="reference external" href="https://tools.ietf.org/html/rfc8628">RFC 8628</a>)</li>
+                                        <li>OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access Tokens (<a class="reference external" href="https://tools.ietf.org/html/draft-ietf-oauth-mtls-13">draft</a>)</li>
+                                    </ul>
+                                </div>
+
+
+                                
+                                
+                                <div class="section-block" id="ASP-NET-Core-Identity">
+                                    <h3 class="block-title">2. ASP.NET Core Identity</h3>
+                                    <p>
+                                        ASP.NET Core Identity is amembership system for web applications that includes membership, login and user data.
+                                        ASP NET Core Identity is used for managing user credentials in the ASP.NET environment. It provides the necessary functionality to manage users, roles, claims etc. It also provides options for two-factor authentication, password reset, email confirmation etc.
+                                    </p>
+                                </div>
+                                <div class="section-block" id="Customization">
+                                    <h3 class="block-title">3. Customization</h3>
+                                    <p>
+                                        All customizations implemented to handle Comsoft applications needs like additional API’s and database fields.
+                                    </p>
+                                </div>
+                            </section>
+
+                            <section id="Terminology" class="doc-section">
+                                <h2 class="section-title">Terminology</h2>
+                                <div class="section-block">
+                                    <p>
+                                        The specs, documentation and object model use a certain terminology that you should be aware of.
+                                    </p>
+                                    <img class="img-fluid" src="assets/images/demo/terminology.png" alt="elegant icons" />
+                                </div><!--//section-block-->
+
+                                <div id="IdentityServer" class="section-block">
+                                    <h3 class="block-title">IdentityServer</h3>
+
+                                    <p>
+                                        IdentityServer is an OpenID Connect provider - it implements the OpenID Connect and OAuth 2.0 protocols.
+                                    </p>
+                                    <p>
+                                        Different literature uses different terms for the same role - you probably also find security token service, identity provider, authorization server, IP-STS and more.
+                                    </p>
+                                    <p>
+                                        But they are in a nutshell all the same: a piece of software that issues security tokens to clients.
+                                    </p>
+                                    <p>IdentityServer has a number of jobs and features - including:</p>
+
+                                    <p>
+
+                                        <ul class="list">
+                                            <li>Protect your resources </li>
+                                            <li>Authenticate users using a local account store or via an external identity provider</li>
+                                            <li>Provide session management and single sign-on</li>
+                                            <li>Manage and authenticate clients</li>
+                                            <li>Issue identity and access tokens to clients</li>
+                                            <li>Validate tokens</li>
+                                        </ul>
+
+
+                                </div>
+
+                                <div id="User" class="section-block">
+                                    <h3 class="block-title">User</h3>
+
+                                    <p>
+                                        A user is a human that is using a registered client to access resources.
+                                    </p>
+
+
+                                </div>
+
+                                <div id="Client" class="section-block">
+                                    <h3 class="block-title">Client</h3>
+
+                                    <p>
+                                        A client is a piece of software that requests tokens from IdentityServer - either for authenticating a user (requesting an identity token) or for accessing a resource (requesting an access token). A client must be first registered with IdentityServer before it can request tokens.
+                                    </p>
+                                    <p>
+                                        Examples for clients are web applications, native mobile or desktop applications, SPAs, server processes etc.
+                                    </p>
+
+                                </div>
+
+                                <div id="Resources" class="section-block">
+                                    <h3 class="block-title">Resources</h3>
+
+                                    <p>
+                                        Resources are something you want to protect with IdentityServer - either identity data of your users, or APIs.
+                                    </p>
+                                    <p>
+                                        Every resource has a unique name - and clients use this name to specify to which resources they want to get access to.
+                                    </p>
+                                    <p>
+                                        Identity data Identity information (aka claims) about a user, e.g. name or email address.
+                                    </p>
+                                    <p>
+                                        APIs APIs resources represent functionality a client wants to invoke - typically modelled as Web APIs, but not necessarily.
+                                    </p>
+                                </div>
+
+                                <div id="IdentityToken" class="section-block">
+                                    <h3 class="block-title">Identity Token</h3>
+
+                                    <p>
+                                        An identity token represents the outcome of an authentication process. It contains at a bare minimum an identifier for the user (called the sub aka subject claim) and information about how and when the user authenticated. It can contain additional identity data.
+                                    </p>
+
+                                </div>
+
+                                <div id="AccessToken" class="section-block">
+                                    <h3 class="block-title">Access Token</h3>
+
+                                    <p>
+                                        An access token allows access to an API resource. Clients request access tokens and forward them to the API. Access tokens contain information about the client and the user (if present). APIs use that information to authorize access to their data.
+                                    </p>
+
+                                </div>
+
+                            </section><!--//doc-section-->
+
+                            <section id="Grants-and-Flows" class="doc-section">
+                                <h2 class="section-title">Grants and Flows</h2>
+                                <p> Grants and flows mean same thing, grant was the common term in OAuth2 specs and flow is the common term in OIDC specs.</p>
+                                <div id="What-Does-OAuth2" class="section-block">
+                                    <h3 class="block-title">What Does OAuth2 & OIDC Flows really mean?</h3>
+                                    <p>
+                                        Its mechanism/approach/process (set of steps) that allow client to obtain token(s) from STS/OP through Endpoints. in other words, the whole life cycle of any Authentication & Authorization request is bound by one of the flows. so its essential to first understand the meaning of endpoints, clients and tokens  terms
+                                    </p>
+
+                                </div>
+
+                                <div id="Flow-Types" class="section-block">
+                                    <h3 class="block-title">Flow Types</h3>
+                                    <p>
+                                        The main purpose of introducing multiple flow/grant types is to authenticate & authorize access to protected resources in various ways with different security credentials due to the variation of HTTP services based application architectures, OpenID Connect and OAuth 2 specs define the following grant types:
+                                    </p>
+                                    <ul>
+                                        <li>Implicit</li>
+                                        <li>Authorization code</li>
+                                        <li>Hybrid</li>
+                                        <li>Client credentials</li>
+                                        <li>Resource owner password</li>
+                                        <li>Device flow</li>
+                                        <li>Refresh tokens</li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div id="Authorization-code" class="section-block">
+                                    <h3 class="block-title">Authorization code</h3>
+                                    <p>
+                                        Authorization code flow was originally specified by OAuth 2, and provides a way to retrieve tokens on a back-channel as opposed to the browser front-channel. It also support client authentication.
+
+                                        While this grant type is supported on its own, it is generally recommended you combine that with identity tokens which turns it into the so called hybrid flow. Hybrid flow gives you important extra features like signed protocol responses.
+                                    </p>
+
+                                </div>
+
+                                <div id="Implicit" class="section-block">
+                                    <h3 class="block-title">Implicit</h3>
+                                    <p>
+                                        The implicit grant type is optimized for browser-based applications. Either for user authentication-only (both server-side and JavaScript applications), or authentication and access token requests (JavaScript applications).
+
+                                        In the implicit flow, all tokens are transmitted via the browser, and advanced features like refresh tokens are thus not allowed.
+                                    </p>
+
+                                </div>
+
+
+                                <div id="Hybrid" class="section-block">
+                                    <h3 class="block-title">Hybrid</h3>
+                                    <p>
+                                        Hybrid flow is a combination of the implicit and authorization code flow - it uses combinations of multiple grant types, most typically code id_token.
+
+                                        In hybrid flow the identity token is transmitted via the browser channel and contains the signed protocol response along with signatures for other artifacts like the authorization code. This mitigates a number of attacks that apply to the browser channel. After successful validation of the response, the back-channel is used to retrieve the access and refresh token.
+
+                                        This is the recommended flow for native applications that want to retrieve access tokens (and possibly refresh tokens as well) and is used for server-side web applications and native desktop/mobile applications.
+                                    </p>
+
+                                </div>
+
+
+                                <div id="Client-Credentials" class="section-block">
+                                    <h3 class="block-title">Client Credentials</h3>
+                                    <p>
+                                        This is the simplest grant type and is used for server to server communication - tokens are always requested on behalf of a client, not a user.
+
+                                        With this grant type you send a token request to the token endpoint, and get an access token back that represents the client. The client typically has to authenticate with the token endpoint using its client ID and secret.
+                                    </p>
+
+                                </div>
+
+                                <div id="Resource-Owner-Password" class="section-block">
+                                    <h3 class="block-title">Resource Owner Password</h3>
+                                    <p>
+                                        The resource owner password grant type allows to request tokens on behalf of a user by sending the user’s name and password to the token endpoint. This is so called “non-interactive” authentication and is generally not recommended.
+
+                                        There might be reasons for certain legacy or first-party integration scenarios, where this grant type is useful, but the general recommendation is to use an interactive flow like implicit or hybrid for user authentication instead.
+                                    </p>
+
+                                </div>
+
+
+                                <div id="Device-Flow" class="section-block">
+                                    <h3 class="block-title">Device Flow</h3>
+                                    <p>
+                                        Device flow is designed for browserless and input constrained devices, where the device is unable to securely capture user credentials. This flow outsources user authentication and consent to an external device (e.g. a smart phone).
+
+                                        This flow is typically used by IoT devices and can request both identity and API resources.
+                                    </p>
+
+                                </div>
+
+                                <div id="Refresh-Tokens" class="section-block">
+                                    <h3 class="block-title">Refresh Tokens</h3>
+                                    <p>
+                                        Refresh tokens allow gaining long lived access to APIs.
+
+                                        You typically want to keep the lifetime of access tokens as short as possible, but at the same time don’t want to bother the user over and over again with doing a front-channel roundtrips to IdentityServer for requesting new ones.
+
+                                        Refresh tokens allow requesting new access tokens without user interaction. Every time the client refreshes a token it needs to make an (authenticated) back-channel call to IdentityServer. This allows checking if the refresh token is still valid, or has been revoked in the meantime.
+
+                                        Refresh tokens are supported in hybrid, authorization code, device flow and resource owner password flows. To request a refresh token, the client needs to include the offline_access scope in the token request (and must be authorized to request for that scope).
+                                    </p>
+
+                                </div>
+
+
+                            </section>
+
+
+                            <section id="Scopes-and-Resources" class="doc-section">
+                                <h2 class="section-title">Scopes and Resources</h2>
+                                <p>Scopes represent what you are allowed to do. In IdentityServer 4 scopes are modelled as resources, which come in two flavors: Identity and API. An identity resource allows you to model a scope that will return a certain set of claims, whilst an API resource scope allows you to model access to a protected resource (typically an API).</p>
+                                <div id="Identity-Resources" class="section-block">
+                                    <h3 class="block-title">Identity Resources</h3>
+                                    <p>
+                                        Identity resources are data like user ID, name, or email address of a user. An identity resource has a unique name, and you can assign arbitrary claim types to it. These claims will then be included in the identity token for the user. The client will use the scope parameter to request access to an identity resource.
+                                    </p>
+                                    <p>
+                                        The OpenID Connect specification specifies a couple of standard identity resources. The minimum requirement is, that you provide support for emitting a unique ID for your users - also called the subject id. This is done by exposing the standard identity resource called openid.
+                                    </p>
+                                    <p>
+                                        Identity server supports all scopes defined in the specification (openid, email, profile, telephone, and address). If you want to support them all, you can add them to your list of supported identity resources in databse.
+                                    </p>
+                                </div>
+
+                                <div id="API-Resources" class="section-block">
+                                    <h3 class="block-title">API Resources</h3>
+                                    <p>
+                                        To allow clients to request access tokens for APIs, you need to define API resources,then you need to get access tokens for APIs, this is required to register these API's as a scope in database.
+                                    </p>
+                                   
+                                </div>
+                            </section>
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#The-Big-Picture">The Big Picture</a>
+
+                                <a class="nav-link scrollto" href="#Comsoft-Identity-Server">Comsoft Identity Server</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#Identity-Server-4">Identity Server 4</a>
+                                    <a class="nav-link scrollto" href="#ASP-NET-Core-Identity">ASP NET Core Identity</a>
+                                    <a class="nav-link scrollto" href="#Customization">Customization</a>
+                                </nav>
+
+                                <a class="nav-link scrollto" href="#Terminology">Terminology</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#IdentityServer">Identity Server</a>
+                                        <a class="nav-link scrollto" href="#User">User</a>
+                                        <a class="nav-link scrollto" href="#Client">Client</a>
+                                        <a class="nav-link scrollto" href="#Resources">Resources</a>
+                                        <a class="nav-link scrollto" href="#IdentityToken">Identity Token</a>
+                                        <a class="nav-link scrollto" href="#AccessToken">Access Token</a>
+                                     </nav>
+                                    <a class="nav-link scrollto" href="#Grants-and-Flows">Grants and Flows</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#What-Does-OAuth2">What Does OAuth2 & OIDC Flows really mean?</a>
+                                        <a class="nav-link scrollto" href="#Flow-Types">Flow Types</a>
+                                        <a class="nav-link scrollto" href="#Authorization-code">Authorization code</a>
+                                        <a class="nav-link scrollto" href="#Implicit">Implicit</a>
+                                        <a class="nav-link scrollto" href="#Hybrid">Hybrid</a>
+                                        <a class="nav-link scrollto" href="#Client-Credentials">Client-Credentials</a>
+                                        <a class="nav-link scrollto" href="#Resource-Owner-Password">Resource Owner Password</a>
+                                        <a class="nav-link scrollto" href="#Device-Flow">Device Flow</a>
+                                        <a class="nav-link scrollto" href="#Refresh-Tokens">Refresh Tokens</a>
+                                    </nav><!--//nav-->
+                                    <a class="nav-link scrollto" href="#Scopes-and-Resources">Scopes and Resources</a>
+                                        <nav class="doc-sub-menu nav flex-column">
+                                            <a class="nav-link scrollto" href="#Identity-Resources">Identity Resources</a>
+                                            <a class="nav-link scrollto" href="#API-Resources">API Resources</a>
+                                           
+                                        </nav><!--//nav-->
+                                    </nav><!--//doc-menu-->
+
+</div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                    <h3 class="promo-title text-center"></h3>
+                    
+                </div><!--//promo-block-inner-->  
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+    
+    
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+

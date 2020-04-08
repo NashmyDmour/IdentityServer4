@@ -1,0 +1,1023 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C2345F5D-2C45-43AB-96F5-A469E0FBA497}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IdentityDocs</RootNamespace>
+    <AssemblyName>IdentityDocs</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\pygments.css" />
+    <Content Include="assets\css\readthedocs-doc-embed.css" />
+    <Content Include="assets\css\styles.css" />
+    <Content Include="assets\css\theme.css" />
+    <Content Include="assets\images\demo\appArch.png" />
+    <Content Include="assets\images\demo\author-profile.png" />
+    <Content Include="assets\images\demo\fontawesome-icons.png" />
+    <Content Include="assets\images\demo\ID41.png" />
+    <Content Include="assets\images\demo\ID410.png" />
+    <Content Include="assets\images\demo\ID411.png" />
+    <Content Include="assets\images\demo\ID42.png" />
+    <Content Include="assets\images\demo\ID422.png" />
+    <Content Include="assets\images\demo\ID423.PNG" />
+    <Content Include="assets\images\demo\ID424.PNG" />
+    <Content Include="assets\images\demo\ID425.PNG" />
+    <Content Include="assets\images\demo\ID43.png" />
+    <Content Include="assets\images\demo\ID430.png" />
+    <Content Include="assets\images\demo\ID432.png" />
+    <Content Include="assets\images\demo\ID433.png" />
+    <Content Include="assets\images\demo\ID434.png" />
+    <Content Include="assets\images\demo\ID436.png" />
+    <Content Include="assets\images\demo\ID437.png" />
+    <Content Include="assets\images\demo\ID44.png" />
+    <Content Include="assets\images\demo\ID45.png" />
+    <Content Include="assets\images\demo\ID46.png" />
+    <Content Include="assets\images\demo\ID47.png" />
+    <Content Include="assets\images\demo\ID48.png" />
+    <Content Include="assets\images\demo\ID49.png" />
+    <Content Include="assets\images\demo\IDS460.PNG" />
+    <Content Include="assets\images\demo\instance-promo.jpg" />
+    <Content Include="assets\images\demo\middleware.png" />
+    <Content Include="assets\images\demo\protocols.png" />
+    <Content Include="assets\images\demo\terminology.png" />
+    <Content Include="assets\images\demo\theme-instance.png" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="assets\plugins\bootstrap\.gitattributes" />
+    <Content Include="assets\plugins\bootstrap\.gitignore" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\plugins\elegant_font\css\fonts\ElegantIcons.svg" />
+    <Content Include="assets\plugins\elegant_font\css\index.html" />
+    <Content Include="assets\plugins\elegant_font\css\lte-ie7.js" />
+    <Content Include="assets\plugins\elegant_font\css\style.css" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow-up-down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_back.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2down_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2dwnn_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2left.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2left_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2left_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2right.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2right_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2right_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-2up_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-down_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-left.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-left_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-left_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-right.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-right_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-right_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot-up_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_carrot_up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_condense.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_condense_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_expand.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_expand_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_expand_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_expand_alt3.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-right.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-right_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left-up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_left_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_move.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right-down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right-down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right-up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right-up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_right_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-down.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-down_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-left.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-left_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-left_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-right.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-right_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-right_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_triangle-up_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_up-down_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_up.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\arrow_up_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_adjust-horiz.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_adjust-vert.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_archive.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_archive_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_bag.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_bag_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_balance.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_blocked.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_book.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_book_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_box-checked.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_box-empty.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_box-selected.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_briefcase.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_briefcase_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_building.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_building_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_calculator_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_calendar.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_calulator.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_camera.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_camera_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cart.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cart_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_chat.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_chat_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_check.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_check_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_check_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_circle-empty.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_circle-slelected.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_clipboard.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_clock.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_clock_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_close.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_close_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_close_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud-download.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud-download_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud-upload.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud-upload_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cloud_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cog.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cogs.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_comment.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_comment_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_compass.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_compass_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cone.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cone_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_contacts.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_contacts_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_creditcard.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_currency.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_currency_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cursor.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_cursor_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_datareport.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_datareport_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_desktop.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_dislike.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_dislike_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_document.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_documents.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_documents_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_document_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_download.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_drawer.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_drawer_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_drive.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_drive_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_easel.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_easel_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-circle_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-oct.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-oct_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-triangle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_error-triangle_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_film.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_floppy.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_floppy_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_flowchart.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_flowchart_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder-add.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder-add_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder-alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder-open.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder-open_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder_download.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_folder_upload.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_genius.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_gift.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_gift_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_globe-2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_globe.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_globe_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_grid-2x2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_grid-3x3.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_group.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_headphones.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_heart.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_heart_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_hourglass.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_house.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_house_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_id-2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_id-2_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_id.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_id_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_image.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_images.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_info.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_info_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_key.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_key_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_laptop.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lifesaver.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lightbulb.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lightbulb_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_like.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_like_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_link.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_link_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_loading.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lock-open.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lock-open_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lock.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_lock_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mail.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mail_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_map.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_map_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_menu-circle_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_menu-circle_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_menu-square_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_menu-square_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_menu.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mic.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mic_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_minus-06.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_minus-box.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_minus_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_minus_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mobile.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mug.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_mug_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_music.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_ol.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_paperclip.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pause.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pause_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pause_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pencil-edit.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pencil-edit_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pencil.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pencil_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pens.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pens_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_percent.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_percent_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_phone.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_piechart.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pin.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pin_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_plus-box.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_plus.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_plus_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_plus_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_printer-alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_printer.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_profile.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pushpin.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_pushpin_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_puzzle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_puzzle_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_question.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_question_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_question_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_quotations.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_quotations_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_quotations_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_refresh.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_ribbon.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_ribbon_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_rook.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_search.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_search2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_search_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_shield.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_shield_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_star-half.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_star-half_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_star.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_star_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_stop.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_stop_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_stop_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_table.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tablet.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tag.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tags.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tags_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tag_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_target.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tool.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_toolbox.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_toolbox_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_tools.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_trash.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_trash_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_ul.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_upload.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_vol-mute.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_vol-mute_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_volume-high.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_volume-high_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_volume-low.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_volume-low_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_wallet.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_wallet_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_zoom-in.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_zoom-in_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_zoom-out.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\icon_zoom-out_alt.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_blogger.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_blogger_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_blogger_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_delicious.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_delicious_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_delicious_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_deviantart.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_deviantart_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_deviantart_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_dribbble.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_dribbble_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_dribbble_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_facebook.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_facebook_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_facebook_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_flickr.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_flickr_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_flickr_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googledrive.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googledrive_alt2.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googledrive_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googleplus.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googleplus_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_googleplus_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_instagram.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_instagram_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_instagram_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_linkedin.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_linkedin_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_linkedin_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_myspace.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_myspace_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_myspace_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_picassa.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_picassa_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_picassa_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_pinterest.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_pinterest_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_pinterest_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_rss.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_rss_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_rss_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_share.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_share_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_share_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_skype.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_skype_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_skype_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_spotify.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_spotify_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_spotify_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_stumbleupon_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_stumbleupon_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_tumbleupon.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_tumblr.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_tumblr_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_tumblr_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_twitter.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_twitter_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_twitter_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_vimeo.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_vimeo_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_vimeo_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_wordpress.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_wordpress_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_wordpress_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_youtube.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_youtube_circle.png" />
+    <Content Include="assets\plugins\elegant_font\images\PNG\social_youtube_square.png" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow-up-down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_back.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2down_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2dwnn_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2left.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2left_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2left_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2right.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2right_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2right_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-2up_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-down_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-left.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-left_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-left_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-right.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-right_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-right_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot-up_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_carrot_up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_condense.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_condense_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_expand.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_expand_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_expand_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_expand_alt3.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-right.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-right_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left-up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_left_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_move.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right-down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right-down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right-up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right-up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_right_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-down.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-down_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-left.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-left_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-left_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-right.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-right_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-right_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_triangle-up_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_up-down_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_up.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\arrow_up_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_adjust-horiz.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_adjust-vert.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_archive.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_archive_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_bag.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_bag_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_balance.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_blocked.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_book.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_book_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_box-checked.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_box-empty.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_box-selected.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_briefcase.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_briefcase_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_building.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_building_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_calculator_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_calendar.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_calulator.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_camera.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_camera_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cart.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cart_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_chat.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_chat_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_check.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_check_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_check_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_circle-empty.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_circle-slelected.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_clipboard.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_clock.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_clock_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_close.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_close_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_close_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud-download.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud-download_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud-upload.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud-upload_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cloud_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cog.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cogs.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_comment.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_comment_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_compass.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_compass_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cone.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cone_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_contacts.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_contacts_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_creditcard.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_currency.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_currency_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cursor.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_cursor_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_datareport.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_datareport_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_desktop.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_dislike.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_dislike_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_document.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_documents.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_documents_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_document_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_download.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_drawer.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_drawer_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_drive.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_drive_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_easel.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_easel_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-circle_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-oct.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-oct_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-triangle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_error-triangle_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_film.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_floppy.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_floppy_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_flowchart.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_flowchart_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder-add.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder-add_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder-alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder-open.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder-open_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder_download.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_folder_upload.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_genius.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_gift.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_gift_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_globe-2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_globe.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_globe_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_grid-2x2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_grid-3x3.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_group.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_headphones.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_heart.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_heart_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_hourglass.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_house.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_house_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_id-2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_id-2_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_id.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_id_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_image.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_images.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_info.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_info_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_key.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_key_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_laptop.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lifesaver.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lightbulb.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lightbulb_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_like.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_like_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_link.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_link_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_loading.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lock-open.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lock-open_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lock.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_lock_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mail.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mail_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_map.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_map_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_menu-circle_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_menu-circle_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_menu-square_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_menu-square_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_menu.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mic.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mic_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_minus-06.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_minus-box.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_minus_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_minus_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mobile.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mug.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_mug_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_music.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_ol.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_paperclip.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pause.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pause_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pause_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pencil-edit.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pencil-edit_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pencil.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pencil_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pens.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pens_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_percent.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_percent_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_phone.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_piechart.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pin.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pin_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_plus-box.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_plus.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_plus_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_plus_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_printer-alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_printer.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_profile.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pushpin.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_pushpin_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_puzzle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_puzzle_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_question.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_question_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_question_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_quotations.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_quotations_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_quotations_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_refresh.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_ribbon.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_ribbon_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_rook.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_search.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_search2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_search_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_shield.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_shield_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_star-half.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_star-half_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_star.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_star_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_stop.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_stop_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_stop_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_table.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tablet.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tag.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tags.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tags_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tag_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_target.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tool.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_toolbox.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_toolbox_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_tools.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_trash.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_trash_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_ul.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_upload.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_vol-mute.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_vol-mute_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_volume-high.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_volume-high_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_volume-low.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_volume-low_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_wallet.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_wallet_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_zoom-in.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_zoom-in_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_zoom-out.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\icon_zoom-out_alt.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_blogger.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_blogger_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_blogger_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_delicious.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_delicious_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_delicious_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_deviantart.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_deviantart_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_deviantart_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_dribbble.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_dribbble_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_dribbble_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_facebook.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_facebook_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_facebook_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_flickr.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_flickr_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_flickr_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googledrive.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googledrive_alt2.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googledrive_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googleplus.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googleplus_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_googleplus_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_instagram.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_instagram_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_instagram_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_linkedin.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_linkedin_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_linkedin_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_myspace.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_myspace_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_myspace_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_picassa.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_picassa_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_picassa_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_pinterest.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_pinterest_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_pinterest_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_rss.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_rss_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_rss_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_share.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_share_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_share_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_skype.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_skype_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_skype_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_spotify.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_spotify_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_spotify_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_stumbleupon_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_stumbleupon_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_tumbleupon.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_tumblr.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_tumblr_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_tumblr_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_twitter.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_twitter_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_twitter_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_vimeo.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_vimeo_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_vimeo_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_wordpress.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_wordpress_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_wordpress_square.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_youtube.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_youtube_circle.svg" />
+    <Content Include="assets\plugins\elegant_font\images\SVG\social_youtube_square.svg" />
+    <Content Include="assets\plugins\elegant_font\Licensing\gpl_license.txt" />
+    <Content Include="assets\plugins\elegant_font\Licensing\mit_license.txt" />
+    <Content Include="assets\plugins\jquery-3.3.1.min.js" />
+    <Content Include="assets\plugins\jquery-match-height\jquery.matchHeight-min.js" />
+    <Content Include="assets\plugins\jquery-match-height\jquery.matchHeight.js" />
+    <Content Include="assets\plugins\jquery-match-height\test.css" />
+    <Content Include="assets\plugins\jquery-match-height\test.html" />
+    <Content Include="assets\plugins\jquery-match-height\test.js" />
+    <Content Include="assets\plugins\jquery-scrollTo\.gitignore" />
+    <Content Include="assets\plugins\jquery-scrollTo\demo\css\style.css" />
+    <Content Include="assets\plugins\jquery-scrollTo\demo\css\style.old.css" />
+    <Content Include="assets\plugins\jquery-scrollTo\demo\index.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\demo\index.old.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\jquery.scrollTo.js" />
+    <Content Include="assets\plugins\jquery-scrollTo\jquery.scrollTo.min.js" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\ElemMaxY-compat.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\ElemMaxY-quirks.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\index.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\test.js" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-compat.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-quirks.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-to-iframe-compat.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-to-iframe-quirks.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-with-iframe-compat.html" />
+    <Content Include="assets\plugins\jquery-scrollTo\tests\WinMaxY-with-iframe-quirks.html" />
+    <Content Include="assets\plugins\lightbox\.gitignore" />
+    <Content Include="assets\plugins\lightbox\dist\ekko-lightbox.css" />
+    <Content Include="assets\plugins\lightbox\dist\ekko-lightbox.js" />
+    <Content Include="assets\plugins\lightbox\dist\ekko-lightbox.min.js" />
+    <Content Include="assets\plugins\lightbox\ekko-lightbox.js" />
+    <Content Include="assets\plugins\lightbox\examples\bs3.html" />
+    <Content Include="assets\plugins\lightbox\Gruntfile.js" />
+    <Content Include="assets\plugins\lightbox\index.html" />
+    <Content Include="assets\plugins\lightbox\webpack.config.js" />
+    <Content Include="assets\plugins\prism\min\prism-min.js" />
+    <Content Include="assets\plugins\prism\prism.css" />
+    <Content Include="assets\plugins\prism\prism.js" />
+    <Content Include="assets\plugins\stickyfill\.gitignore" />
+    <Content Include="assets\plugins\stickyfill\dist\stickyfill.es6.js" />
+    <Content Include="assets\plugins\stickyfill\dist\stickyfill.js" />
+    <Content Include="assets\plugins\stickyfill\dist\stickyfill.min.js" />
+    <Content Include="assets\plugins\stickyfill\Gruntfile.js" />
+    <Content Include="assets\plugins\stickyfill\src\stickyfill.js" />
+    <Content Include="assets\plugins\stickyfill\test\index.html" />
+    <Content Include="assets\plugins\stickyfill\test\js\jquery-3.1.1.min.js" />
+    <Content Include="charts.html" />
+    <Content Include="DataClassModel.html" />
+    <Content Include="Topics.html" />
+    <Content Include="Deployment.html" />
+    <Content Include="faqs.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="index.html" />
+    <Content Include="license.html" />
+    <Content Include="license.txt" />
+    <Content Include="showcase.html" />
+    <Content Include="components.html" />
+    <Content Include="start.html" />
+    <Content Include="start1.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\.DS_Store" />
+    <Content Include="assets\images\.DS_Store" />
+    <Content Include="assets\images\demo\.DS_Store" />
+    <Content Include="assets\js\.DS_Store" />
+    <Content Include="assets\plugins\.DS_Store" />
+    <Content Include="assets\plugins\bootstrap\.DS_Store" />
+    <Content Include="assets\plugins\bootstrap\.editorconfig" />
+    <Content Include="assets\plugins\bootstrap\.hound.yml" />
+    <Content Include="assets\plugins\bootstrap\.travis.yml" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="assets\plugins\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="assets\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="assets\plugins\elegant_font\css\fonts\ElegantIcons.eot" />
+    <Content Include="assets\plugins\elegant_font\css\fonts\ElegantIcons.ttf" />
+    <Content Include="assets\plugins\elegant_font\css\fonts\ElegantIcons.woff" />
+    <Content Include="assets\plugins\jquery-match-height\bower.json" />
+    <Content Include="assets\plugins\jquery-match-height\CHANGELOG.md" />
+    <Content Include="assets\plugins\jquery-match-height\LICENSE" />
+    <Content Include="assets\plugins\jquery-match-height\matchHeight.jquery.json" />
+    <Content Include="assets\plugins\jquery-match-height\README.md" />
+    <Content Include="assets\plugins\jquery-scrollTo\.jscsrc" />
+    <Content Include="assets\plugins\jquery-scrollTo\.jshintrc" />
+    <Content Include="assets\plugins\jquery-scrollTo\bower.json" />
+    <Content Include="assets\plugins\jquery-scrollTo\CHANGELOG" />
+    <Content Include="assets\plugins\jquery-scrollTo\composer.json" />
+    <Content Include="assets\plugins\jquery-scrollTo\LICENSE" />
+    <Content Include="assets\plugins\jquery-scrollTo\package.json" />
+    <Content Include="assets\plugins\jquery-scrollTo\README.md" />
+    <Content Include="assets\plugins\lightbox\.DS_Store" />
+    <Content Include="assets\plugins\lightbox\bower.json" />
+    <Content Include="assets\plugins\lightbox\dist\ekko-lightbox.js.map" />
+    <Content Include="assets\plugins\lightbox\dist\ekko-lightbox.min.js.map" />
+    <Content Include="assets\plugins\lightbox\ekko-lightbox.less" />
+    <Content Include="assets\plugins\lightbox\ISSUE_TEMPLATE.md" />
+    <Content Include="assets\plugins\lightbox\LICENSE" />
+    <Content Include="assets\plugins\lightbox\package.json" />
+    <Content Include="assets\plugins\lightbox\README.md" />
+    <Content Include="assets\plugins\lightbox\yarn.lock" />
+    <Content Include="assets\plugins\stickyfill\.editorconfig" />
+    <Content Include="assets\plugins\stickyfill\LICENSE" />
+    <Content Include="assets\plugins\stickyfill\package-lock.json" />
+    <Content Include="assets\plugins\stickyfill\package.json" />
+    <Content Include="assets\plugins\stickyfill\README.md" />
+    <Content Include="assets\plugins\stickyfill\yarn.lock" />
+    <Content Include="assets\scss\.DS_Store" />
+    <Content Include="assets\scss\config.codekit3" />
+    <Content Include="assets\scss\styles.scss" />
+    <Content Include="assets\scss\_base.scss" />
+    <Content Include="assets\scss\_doc.scss" />
+    <Content Include="assets\scss\_landing.scss" />
+    <Content Include="assets\scss\_mixins.scss" />
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\plugins\stickyfill\types\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64137</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64137/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.8.3\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

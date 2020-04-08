@@ -61,8 +61,7 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-                // oxxxxxxxxxxxxxxx
-                //ccccc
+                
                 // options.UserInteraction.LoginUrl = "/Account/Login";
                 //options.UserInteraction.LogoutUrl = "/Account/Logout";
                 options.Authentication = new AuthenticationOptions()
@@ -70,6 +69,7 @@ namespace IdentityServer
                     CookieLifetime = TimeSpan.FromHours(10), // ID server cookie timeout set to 10 hours
                     CookieSlidingExpiration = true
                 };
+               
             })
             .AddConfigurationStore(options =>
             {

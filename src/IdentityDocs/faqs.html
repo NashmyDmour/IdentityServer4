@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Comsoft Identity Server FAQ</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/lightbox/dist/ekko-lightbox.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    
+</head> 
+
+<body class="body-purple">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Comsoft Identity server</span><span class="text-bold">DOCS</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">How To ?</li>
+                </ol>
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner" id="Clients">
+                            <section id="general" class="doc-section">
+                                <h2 class="section-title">Clients</h2>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How can I configure a new client in Identity server using database?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on Clients table</li>
+                                                <li> Copy any record from the table</li>
+                                                <li> Paste the record on the last record (empty record)</li>
+                                                <li> Change the ClientID </li>
+                                            </ul>
+                                        </p>
+                                        <div class="callout-block callout-success">
+                                            <div class="icon-holder">
+                                                <i class="fas fa-thumbs-up"></i>
+                                            </div><!--//icon-holder-->
+                                            <div class="content">
+                                                <h4 class="callout-title">This table will help the developer to manage many primary client’s configurations and attributes like (not limited):</h4>
+                                                <p> <strong>ClientName : </strong> Client display name (used for logging and consent screen). </p>
+                                                <p> <strong>Enabled : </strong> Enabling disabling client. </p>
+                                                <p> <strong>RequireConsent : </strong> Specifies whether a consent screen is required. Defaults to false. </p>
+                                                <p> <strong>AllowOfflineAccess : </strong> Specifies whether this client can request refresh tokens (be requesting the offline_access scope). </p>
+                                                <p> <strong>UserSsoLifetime  : </strong> The maximum duration (in seconds) since the last time the user authenticated. Defaults to null. You can adjust the lifetime of a session token to control when and how often a user is required to reenter credentials instead of being silently authenticated, when using a web application.. </p>
+                                                <p> For further information <a href="DataClassModel.html" target="_blank">Please check cleint table in Database and Class Model </a> to see all properties and attributes in this table .</p>
+                                            </div><!--//content-->
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How can I add cleint secret? </h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on ClientSecrets table</li>
+                                                <li>Insert new record in the table, the ID field represent a foreign key for ID field from clients table  </li>
+                                                <li>  You can generate new secret by execute the below code in SQL server (use new query option) to generate secret like "Mysecret".</li>
+                                            </ul>
+
+                                        </p>
+                                        <pre><code class="language-css">
+DECLARE @HASHBYTES VARBINARY(128) = hashbytes('sha2_256', 'Mysecret')
+SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'varchar(128)');
+                                                </code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How can I configure client flow using database?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ol class="list">
+
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on ClientGrantTypes table</li>
+                                                <li>Insert new record in the table, the ID field represent a foreign key for ID field from clients table  </li>
+                                                <li>
+                                                    Fill the GrantType field with one of the below options (the value is case sensitive, make sure to copy the value):
+                                                    <ul>
+                                                        <li>client_credentials</li>
+                                                        <li>authorization_code</li>
+                                                        <li>password</li>
+                                                        <li>hybrid</li>
+
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                        </p>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How can I configure client Redirect URL using database?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on ClientRedirectUris table</li>
+                                                <li>Insert new record in the table, the ID field represent a foreign key for ID field from clients table  </li>
+                                                <li> Fill RedirectUri value with URL that  identity server will redirect the end user after log-in </li>
+                                            </ul>
+
+                                        </p>
+
+
+                                    </div>
+                                </div>
+
+
+                            </section><!--//doc-section-->
+
+
+                            <section id="Token" class="doc-section">
+                                <h2 class="section-title">Token</h2>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to change Access token expiration period?  <span class="label label-success">New</span></h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on Clients table</li>
+                                                <li> Change the AccessTokenLifetime (defaults to 3600 seconds / 1 hour) </li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to change Access token Type (JWT or Reference)? </h3>
+                                    <div class="answer">
+                                        <p>
+                                            A JWT token would be a self-contained access token - it’s a protected data structure with claims and an expiration. Once an API has learned about the key material, it can validate self-contained tokens without needing to communicate with the issuer. This makes JWTs hard to revoke. They will stay valid until they expire.
+                                        </p>
+                                        <p>  When using reference tokens - IdentityServer will store the contents of the token in a data store and will only issue a unique identifier for this token back to the client. The API receiving this reference must then open a back-channel communication to IdentityServer to validate the token.</p>
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on Clients table</li>
+                                                <li> Change the AccessTokenType (default is 0  JWT token) </li>
+                                            </ul>
+                                        </p>
+
+
+                                    </div>
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to Enable referesh token option?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            Since access tokens have finite lifetimes, refresh tokens allow requesting new access tokens without user interaction.
+                                        </p>
+                                        <p>
+                                            Refresh tokens are supported for the following flows: authorization code, hybrid and resource owner password credential flow. The clients needs to be explicitly authorized to request refresh tokens by setting AllowOfflineAccess to true.
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on Clients table</li>
+                                                <li> Change the AllowOfflineAccess to 1 </li>
+                                            </ul>
+                                        </p>
+
+                                    </div>
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i>How to manage refresh token expiration?</h3>
+                                    <div class="answer">
+                                        <p>Identity server offer to options to manage refresh token expiration:</p>
+                                        <p>
+                                            <ul>
+                                                <li>Sliding </li>
+                                                <li>Absolute </li>
+                                            </ul>
+                                        </p>
+                                        <p><strong>Sliding means 2 things:</strong></p>
+                                        <p>
+                                            <ul>
+                                                <li>When the refresh token is first created, it will have a lifetime of SlidingRefreshTokenLifetime</li>
+                                                <li>When you use the refresh token lifetime, its new lifetime will be now + SlidingRefreshTokenLifetime or creation time + AbsoluteRefreshTokenLifetime, whichever the lower.</li>
+                                            </ul>
+                                        </p>
+                                        <p>Quick example, let's say you have a SlidingRefreshTokenLifetime of 10 and a AbsoluteRefreshTokenLifetime of 30:</p>
+                                        <p>
+                                            <ol>
+                                                <li>The refresh token is created at time T0</li>
+                                                <li>You use it at time T8 to get a new access token. Its new expiration time is T18</li>
+                                                <li>You use it again at T17 which makes it expire at T27</li>
+                                                <li>You use it once again at T25. Here the absolute expiration time, T30, is lower than the new sliding expiration time, T35, so T30 it is</li>
+
+                                            </ol>
+                                        </p>
+                                        <p>
+                                            Let's say the token lifetime can be extended, but its entire lifetime will be never be greater than the absolute lifetime.
+
+                                            Finally, RefreshToken.AbsoluteRefreshTokenLifetime doesn't involve sliding expiration, so the SlidingRefreshTokenLifetime is not used. The refresh token will be valid for AbsoluterefreshTokenLifetime after it was created.
+                                        </p>
+                                        <p>To change these settigs please follow the below settings:</p>
+                                        <p>
+                                            <ul>
+                                                <li> Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on Clients table</li>
+                                                <li> Change  RefreshTokenExpiration (Absolute 1) (Sliding  0)</li>
+                                                <li>Change AbsoluteRefreshTokenLifetime value (Maximum lifetime of a refresh token in seconds. Defaults to 2592000 seconds / 30 days)</li>
+                                                <li>Change SlidingRefreshTokenLifetime value (Sliding lifetime of a refresh token in seconds. Defaults to 1296000 seconds / 15 days)</li>
+                                                <li>Change RefreshTokenUsage value (<strong>ReUse</strong> the refresh token handle will stay the same when refreshing tokens) (<strong>OneTime</strong> the refresh token handle will be updated when refreshing tokens. This is the default.)</li>
+                                                <li> Change AccessTokenType value (Reference Token 0)(JWT 1)</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i>How to monitor  token expiration?</h3>
+                                    <div class="answer">
+                                        <ul>
+                                            <li> Open SQL server</li>
+                                            <li>Open ComsoftIdentityServer database</li>
+                                            <li> Check data in PersistedGrants table</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="API" class="doc-section">
+                                <h2 class="section-title">API</h2>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to add new API resource?</h3>
+                                    <div class="answer">
+                                        <ul>
+                                            <li>Open SQL server</li>
+                                            <li>Open ComsoftIdentityServer database</li>
+                                            <li>Add new record in ApiResources table (ex name: APIabc) (</li>
+                                        </ul>
+                                        <p>Then grant access for APIabc to specific Client with the following steps:</p>
+                                        <p>
+                                            <ul>
+                                                <li>Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li>Add new record in ClientScopes table (</li>
+                                            </ul>
+                                        </p>
+                                        <p>Update Startup class for cleint to request this API in scope and update API startup, please refer to <a href="Topics.html">Protecting APIs section</a> in Topics and References page.</p>
+                                    </div>
+                                </div><!--//section-block-->
+
+                            </section><!--//doc-section-->
+
+                            <section id="API" class="doc-section">
+                                <h2 class="section-title">User Account</h2>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to Add user account using API ?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            Comsoft Identity server is offering an integration point to add user account by calling the below API end point:
+                                        </p>
+                                        <p><i><b>IdentityServerURL</b></i>/account/RegisterUserAsync </p>
+                                        <p>This API required to send Username which is the same as email and password . </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to Add user account using Database ?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li>Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li>Add new record in AspNetUsers table (Make sure that IsEnabled and EmailConfirmed flags marked as true) (</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to change user password using API ?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            Comsoft Identity server is offering an integration point to change user password by calling the below <strong>Authorized </strong> API end point:
+                                        </p>
+                                        <p><i><b>IdentityServerURL</b></i>/account/ChangeUserPasswordAsync </p>
+                                        <p>This API required to send: </p>
+                                        <ul>
+                                            <li>Username</li>
+                                            <li>Old Password</li>
+                                            <li>New Password</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to reset user password using API ?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            Comsoft Identity server is offering an integration point to reset user password ,this operation should be done in 2 steps :
+                                        </p>
+
+                                        <ol>
+                                            <li><p><strong>Request Reset Token:</strong> The user request a reset token by calling <i><b>IdentityServerURL</b></i>/account/GeneratePasswordResetTokenAsync</p>
+                                            <p>This API required to send UserName.</p></li>
+
+                                            <li><p><strong> Reset Password:</strong> The user reset password by calling <i><b>IdentityServerURL</b></i>/account/ResetUserPasswordAsync</p>
+                                                <p>This API required to send the follwoing:
+                                                
+                                                <ul>
+                                                    <li>Username</li>
+                                                    <li>New Password</li>
+                                                    <li>Reset Token</li>
+                                                    
+                                                    </ul>.</p>
+                                            </li>
+                                        </ol>
+
+                                       
+
+                                    </div>
+                                </div>
+                            </section>
+
+                                    </div><!--//content-inner-->
+                                </div><!--//doc-content-->
+                                <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                                    <div id="doc-nav" class="doc-nav">
+                                        <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                            <a class="nav-link scrollto" href="#Clients">Clients</a>
+                                            <a class="nav-link scrollto" href="#Token">Token</a>
+                                            <a class="nav-link scrollto" href="#API">API</a>
+                                            <a class="nav-link scrollto" href="#User Account">User Account</a>
+                                        </nav><!--//doc-menu-->
+                                    </div>
+                                </div><!--//doc-sidebar-->
+                        </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                   
+                    <div class="row">
+                       </div><!--//row-->
+                </div><!--//promo-block-inner-->  
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright"></small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>  
+    <script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>   
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                                
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+

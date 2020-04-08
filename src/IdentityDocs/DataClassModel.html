@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 project documentation theme for developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+    <link rel="stylesheet" href="assets/css/pygments.css">
+
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+   
+
+</head> 
+
+<body class="body-orange">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Comsoft Identity Server</span><span class="text-bold"> Docs</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Database and Class Model</li>
+                </ol>
+                
+              
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+               
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="sec00" class="doc-section">
+
+                                <h2 class="section-title">Database and Class Model</h2>
+                                <div class="section-block">
+                                    <p>
+                                        This section will describe the database structure for each business entity in addition to the class model mapped with database tables and fields .
+                                    </p>
+                                    <p>
+
+
+
+                                </div>
+
+
+                            <div class="section-block" id="sec50">
+                                <h2 class="section-title">Client</h2>
+                                
+                                <div class="section" id="sec51">
+                                    <h2>Client App Related Tables</h2>
+                                    <p>Data in these tables defines which Client Applications have access to the ID4 server and what some of the properties of that acess are.</p>
+                                    <img alt="../../_images/ClientAppRelatedTables.png" class="align-center" src="assets/images/demo/ID432.png" />
+                                    <p><strong>Clients</strong></p>
+                                    <p>Data in this table defines which Client Applications have access to the ID4 server and what some of the properties of that acess are.</p>
+
+                                </div>
+                                <div class="section" id="sec52">
+                                    <h1>Client class model</h1>
+                                    <p>
+                                        The <code class="docutils literal notranslate"><span class="pre">Client</span></code> class models an OpenID Connect or OAuth 2.0 client -
+                                        e.g. a native application, a web application or a JS-based application.
+                                    </p>
+                                    <div class="section" id="basics">
+                                        <h2>Basics</h2>
+                                        <dl class="docutils">
+                                            <dt><code class="docutils literal notranslate"><span class="pre">Enabled</span></code></dt>
+                                            <dd>Specifies if client is enabled. Defaults to <cite>true</cite>.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ClientId</span></code></dt>
+                                            <dd>Unique ID of the client</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ClientSecrets</span></code></dt>
+                                            <dd>List of client secrets - credentials to access the token endpoint.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RequireClientSecret</span></code></dt>
+                                            <dd>Specifies whether this client needs a secret to request tokens from the token endpoint (defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowedGrantTypes</span></code></dt>
+                                            <dd>Specifies the grant types the client is allowed to use. Use the <code class="docutils literal notranslate"><span class="pre">GrantTypes</span></code> class for common combinations.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RequirePkce</span></code></dt>
+                                            <dd>Specifies whether clients using an authorization code based grant type must send a proof key (defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>).</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowPlainTextPkce</span></code></dt>
+                                            <dd>Specifies whether clients using PKCE can use a plain text code challenge (not recommended - and default to <code class="docutils literal notranslate"><span class="pre">false</span></code>)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RedirectUris</span></code></dt>
+                                            <dd>Specifies the allowed URIs to return tokens or authorization codes to</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowedScopes</span></code></dt>
+                                            <dd>By default a client has no access to any resources - specify the allowed resources by adding the corresponding scopes names</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowOfflineAccess</span></code></dt>
+                                            <dd>Specifies whether this client can request refresh tokens (be requesting the <code class="docutils literal notranslate"><span class="pre">offline_access</span></code> scope)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowAccessTokensViaBrowser</span></code></dt>
+                                            <dd>
+                                                Specifies whether this client is allowed to receive access tokens via the browser.
+                                                This is useful to harden flows that allow multiple response types
+                                                (e.g. by disallowing a hybrid flow client that is supposed to use <cite>code id_token</cite> to add the <cite>token</cite> response type
+                                                and thus leaking the token to the browser.
+                                            </dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">Properties</span></code></dt>
+                                            <dd>Dictionary to hold any custom client-specific values as needed.</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="section" id="authentication-logout">
+                                        <h2>Authentication/Logout</h2>
+                                        <dl class="docutils">
+                                            <dt><code class="docutils literal notranslate"><span class="pre">PostLogoutRedirectUris</span></code></dt>
+                                            <dd>Specifies allowed URIs to redirect to after logout. See the <a class="reference external" href="https://openid.net/specs/openid-connect-session-1_0.html">OIDC Connect Session Management spec</a> for more details.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">FrontChannelLogoutUri</span></code></dt>
+                                            <dd>Specifies logout URI at client for HTTP based front-channel logout. See the <a class="reference external" href="https://openid.net/specs/openid-connect-frontchannel-1_0.html">OIDC Front-Channel spec</a> for more details.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">FrontChannelLogoutSessionRequired</span></code></dt>
+                                            <dd>Specifies if the user’s session id should be sent to the FrontChannelLogoutUri. Defaults to true.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">BackChannelLogoutUri</span></code></dt>
+                                            <dd>Specifies logout URI at client for HTTP based back-channel logout. See the <a class="reference external" href="https://openid.net/specs/openid-connect-backchannel-1_0.html">OIDC Back-Channel spec</a> for more details.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">BackChannelLogoutSessionRequired</span></code></dt>
+                                            <dd>Specifies if the user’s session id should be sent in the request to the BackChannelLogoutUri. Defaults to true.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">EnableLocalLogin</span></code></dt>
+                                            <dd>Specifies if this client can use local accounts, or external IdPs only. Defaults to <cite>true</cite>.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">IdentityProviderRestrictions</span></code></dt>
+                                            <dd>Specifies which external IdPs can be used with this client (if list is empty all IdPs are allowed). Defaults to empty.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">UserSsoLifetime</span></code> <cite>added in 2.3</cite></dt>
+                                            <dd>
+                                                The maximum duration (in seconds) since the last time the user authenticated. Defaults to <code class="docutils literal notranslate"><span class="pre">null</span></code>.
+                                                You can adjust the lifetime of a session token to control when and how often a user is required to reenter credentials instead of being silently authenticated, when using a web application.
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="section" id="token">
+                                        <h2>Token</h2>
+                                        <dl class="docutils">
+                                            <dt><code class="docutils literal notranslate"><span class="pre">IdentityTokenLifetime</span></code></dt>
+                                            <dd>Lifetime to identity token in seconds (defaults to 300 seconds / 5 minutes)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowedIdentityTokenSigningAlgorithms</span></code></dt>
+                                            <dd>List of allowed signing algorithms for identity token. If empty, will use the server default signing algorithm.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AccessTokenLifetime</span></code></dt>
+                                            <dd>Lifetime of access token in seconds (defaults to 3600 seconds / 1 hour)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AuthorizationCodeLifetime</span></code></dt>
+                                            <dd>Lifetime of authorization code in seconds (defaults to 300 seconds / 5 minutes)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AbsoluteRefreshTokenLifetime</span></code></dt>
+                                            <dd>Maximum lifetime of a refresh token in seconds. Defaults to 2592000 seconds / 30 days</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">SlidingRefreshTokenLifetime</span></code></dt>
+                                            <dd>Sliding lifetime of a refresh token in seconds. Defaults to 1296000 seconds / 15 days</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RefreshTokenUsage</span></code></dt>
+                                            <dd>
+                                                <p class="first"><code class="docutils literal notranslate"><span class="pre">ReUse</span></code> the refresh token handle will stay the same when refreshing tokens</p>
+                                                <p class="last"><code class="docutils literal notranslate"><span class="pre">OneTime</span></code> the refresh token handle will be updated when refreshing tokens. This is the default.</p>
+                                            </dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RefreshTokenExpiration</span></code></dt>
+                                            <dd>
+                                                <p class="first"><code class="docutils literal notranslate"><span class="pre">Absolute</span></code> the refresh token will expire on a fixed point in time (specified by the AbsoluteRefreshTokenLifetime)</p>
+                                                <p class="last"><code class="docutils literal notranslate"><span class="pre">Sliding</span></code> when refreshing the token, the lifetime of the refresh token will be renewed (by the amount specified in SlidingRefreshTokenLifetime). The lifetime will not exceed <cite>AbsoluteRefreshTokenLifetime</cite>.</p>
+                                            </dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">UpdateAccessTokenClaimsOnRefresh</span></code></dt>
+                                            <dd>Gets or sets a value indicating whether the access token (and its claims) should be updated on a refresh token request.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AccessTokenType</span></code></dt>
+                                            <dd>Specifies whether the access token is a reference token or a self contained JWT token (defaults to <cite>Jwt</cite>).</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">IncludeJwtId</span></code></dt>
+                                            <dd>Specifies whether JWT access tokens should have an embedded unique ID (via the <cite>jti</cite> claim).</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowedCorsOrigins</span></code></dt>
+                                            <dd>If specified, will be used by the default CORS policy service implementations (In-Memory and EF) to build a CORS policy for JavaScript clients.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">Claims</span></code></dt>
+                                            <dd>Allows settings claims for the client (will be included in the access token).</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AlwaysSendClientClaims</span></code></dt>
+                                            <dd>If set, the client claims will be sent for every flow. If not, only for client credentials flow (default is <cite>false</cite>)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AlwaysIncludeUserClaimsInIdToken</span></code></dt>
+                                            <dd>When requesting both an id token and access token, should the user claims always be added to the id token instead of requiring the client to use the userinfo endpoint. Default is <cite>false</cite>.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ClientClaimsPrefix</span></code></dt>
+                                            <dd>If set, the prefix client claim types will be prefixed with. Defaults to <cite>client_</cite>. The intent is to make sure they don’t accidentally collide with user claims.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">PairWiseSubjectSalt</span></code></dt>
+                                            <dd>Salt value used in pair-wise subjectId generation for users of this client.</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="section" id="consent-screen">
+                                        <h2>Consent Screen</h2>
+                                        <dl class="docutils">
+                                            <dt><code class="docutils literal notranslate"><span class="pre">RequireConsent</span></code></dt>
+                                            <dd>Specifies whether a consent screen is required. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">AllowRememberConsent</span></code></dt>
+                                            <dd>Specifies whether user can choose to store consent decisions. Defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ConsentLifetime</span></code></dt>
+                                            <dd>Lifetime of a user consent in seconds. Defaults to null (no expiration).</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ClientName</span></code></dt>
+                                            <dd>Client display name (used for logging and consent screen)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">ClientUri</span></code></dt>
+                                            <dd>URI to further information about client (used on consent screen)</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">LogoUri</span></code></dt>
+                                            <dd>URI to client logo (used on consent screen)</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="section" id="device-flow">
+                                        <h2>Device flow</h2>
+                                        <dl class="docutils">
+                                            <dt><code class="docutils literal notranslate"><span class="pre">UserCodeType</span></code></dt>
+                                            <dd>Specifies the type of user code to use for the client. Otherwise falls back to default.</dd>
+                                            <dt><code class="docutils literal notranslate"><span class="pre">DeviceCodeLifetime</span></code></dt>
+                                            <dd>Lifetime to device code in seconds (defaults to 300 seconds / 5 minutes)</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+
+                                    <div class="section-block" id="sec53">
+                                        <h2 class="section-title">API Resources</h2>
+                                       
+                                        <div class="section" id="sec54">
+                                            <h1>API Resources Related Tables</h1>
+                                            <img alt="../../_images/ApiResourcesRelatedTables.png" class="align-center" src="assets/images/demo/ID434.png" />
+                                        </div>
+  <div class="section" id="sec55">
+<h1>API Resource class model</h1>
+<p>This class model an API resource.</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">Enabled</span></code></dt>
+<dd>Indicates if this resource is enabled and can be requested. Defaults to true.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Name</span></code></dt>
+<dd>The unique name of the API. This value is used for authentication with introspection and will be added to the audience of the outgoing access token.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DisplayName</span></code></dt>
+<dd>This value can be used e.g. on the consent screen.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Description</span></code></dt>
+<dd>This value can be used e.g. on the consent screen.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ApiSecrets</span></code></dt>
+<dd>The API secret is used for the introspection endpoint. The API can authenticate with introspection using the API name and secret.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">AllowedAccessTokenSigningAlgorithms</span></code></dt>
+<dd>List of allowed signing algorithms for access token. If empty, will use the server default signing algorithm.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UserClaims</span></code></dt>
+<dd>List of associated user claim types that should be included in the access token.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Scopes</span></code></dt>
+<dd>An API must have at least one scope. Each scope can have different settings.</dd>
+</dl>
+<div class="section" id="scopes">
+<h2>Scopes</h2>
+<p>In the simple case an API has exactly one scope. But there are cases where you might want to sub-divide the functionality of an API,
+and give different clients access to different parts.</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">Name</span></code></dt>
+<dd>The unique name of the scope. This is the value a client will use for the scope parameter in the authorize/token request.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DisplayName</span></code></dt>
+<dd>This value can be used e.g. on the consent screen.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Description</span></code></dt>
+<dd>This value can be used e.g. on the consent screen.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Required</span></code></dt>
+<dd>Specifies whether the user can de-select the scope on the consent screen (if the consent screen wants to implement such a feature). Defaults to false.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">Emphasize</span></code></dt>
+<dd>Specifies whether the consent screen will emphasize this scope (if the consent screen wants to implement such a feature). Use this setting for sensitive or important scopes. Defaults to false.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ShowInDiscoveryDocument</span></code></dt>
+<dd>Specifies whether this scope is shown in the discovery document. Defaults to true.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">UserClaims</span></code></dt>
+<dd>List of associated user claim types that should be included in the access token. The claims specified here will be added to the list of claims specified for the API.</dd>
+</dl>
+</div>
+<div class="section" id="convenience-constructor-behavior">
+<h2>Convenience Constructor Behavior</h2>
+<p>Just a note about the constructors provided for the <code class="docutils literal notranslate"><span class="pre">ApiResource</span></code> class.</p>
+<p>For full control over the data in the <code class="docutils literal notranslate"><span class="pre">ApiResource</span></code>, use the default constructor with no parameters.
+You would use this approach if you wanted to configure multiple scopes per API.
+For example:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">ApiResource</span>
+<span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;api2&quot;</span><span class="p">,</span>
+
+    <span class="n">Scopes</span> <span class="p">=</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="nf">Scope</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;api2.full_access&quot;</span><span class="p">,</span>
+            <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">&quot;Full access to API 2&quot;</span>
+        <span class="p">},</span>
+        <span class="k">new</span> <span class="n">Scope</span>
+        <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;api2.read_only&quot;</span><span class="p">,</span>
+            <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">&quot;Read only access to API 2&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For simpler scenarios where you only require one scope per API, then several convenience constructors which accept a <code class="docutils literal notranslate"><span class="pre">name</span></code> are provided.
+For example:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="nf">ApiResource</span><span class="p">(</span><span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;Some API 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using the convenience constructor is equivalent to this:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">ApiResource</span>
+<span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span>
+    <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">&quot;Some API 1&quot;</span><span class="p">,</span>
+
+    <span class="n">Scopes</span> <span class="p">=</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="nf">Scope</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span>
+            <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">&quot;Some API 1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-api-resources-in-appsettings-json">
+<h2>Defining API resources in appsettings.json</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">AddInMemoryApiResource</span></code> extensions method also supports adding clients from the ASP.NET Core configuration file. This allows you to define static clients directly from the appsettings.json file:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;IdentityServer&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s">&quot;IssuerUri&quot;</span><span class="p">:</span> <span class="s">&quot;urn:sso.company.com&quot;</span><span class="p">,</span>
+  <span class="s">&quot;ApiResources&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">&quot;Name&quot;</span><span class="p">:</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span>
+      <span class="s">&quot;DisplayName&quot;</span><span class="p">:</span> <span class="s">&quot;My API&quot;</span><span class="p">,</span>
+
+      <span class="s">&quot;Scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s">&quot;Name&quot;</span><span class="p">:</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span>
+          <span class="s">&quot;DisplayName&quot;</span><span class="p">:</span> <span class="s">&quot;My API&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then pass the configuration section to the <code class="docutils literal notranslate"><span class="pre">AddInMemoryApiResource</span></code> method:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">AddInMemoryApiResources</span><span class="p">(</span><span class="n">configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&quot;IdentityServer:ApiResources&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+                                    </div>
+
+                                    <div class="section" id="sec56">
+                                        <h2>IdentityResources Related Tables</h2>
+                                        <p>There is no configuration data in these tables at this time.</p>
+                                        <img alt="../../_images/IdentityResourcesRelatedTables.png" class="align-center" src="assets/images/demo/ID433.png" />
+                                    </div>
+                                    
+                                    <div class="section" id="sec57">
+                                        <h2>Persisted Grant Table</h2>
+                                        <p>There are no configuration records in the Persisted Grant table. These represent the tokens created as they are granted and updated when they are revoked.</p>
+                                        <img alt="../../_images/PersistedGrantTable.png" class="align-center" src="assets/images/demo/ID436.png" />
+                                    </div>
+
+      <div class="section" id="sec58">
+<span id="refdatabasediagramaspnetidentity"></span><h1>Database Diagram: AspNetIdentity Database</h1>
+<p>There are no configuration scripts for Users, this was a deliberate decision. We decided to start with no users in ID4, forcing users to register their existing username (‘’Register User’’ is discussed later), but we could have imported all of our existing users from our WebForms FormsAuth Authentication system. The catch, however, is there is no way to transfer passwords, users have to reset their password (‘’Password Reset’’ is discussed later). When you force users to register their Username they can use their existing password in the prior Authentication system.</p>
+<p>Please also note we developed a separate Authorization Service and are not using ID4 User Claims for Authorization, only Authentication.</p>
+<img alt="../../_images/ASPNetIdentityTables.png" class="align-left" src="assets/images/demo/ID437.png" />
+</div>
+                                </section><!--//doc-section-->
+
+
+</div><!--//content-inner-->
+                        </div><!--//doc-content-->
+                
+
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#sec00<">Database and Class Model</a>
+                                <a class="nav-link scrollto" href="#sec50<">Client</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#sec51">Client  Related Tables</a>
+
+                                    <a class="nav-link scrollto" href="#sec52">Client class model</a>
+
+
+                                </nav><!--//nav-->
+                                <a class="nav-link scrollto" href="#sec53">API Resources </a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#sec54">API Resources Related Tables</a>
+                                    <a class="nav-link scrollto" href="#sec55">API Resource class model</a>
+
+                                </nav><!--//nav-->
+
+                                <a class="nav-link scrollto" href="#sec56">IdentityResources Related Tables </a>
+                                <a class="nav-link scrollto" href="#sec57">Persisted Grant Table </a>
+                                <a class="nav-link scrollto" href="#sec58">Database Diagram: AspNetIdentity Database</a>
+                            </nav>
+                        </div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                   
+                </div><!--//promo-block-inner-->  
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+    
+    
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+

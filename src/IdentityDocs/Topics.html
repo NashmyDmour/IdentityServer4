@@ -1,0 +1,1342 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 project documentation theme for developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+    <link rel="stylesheet" href="assets/css/pygments.css">
+
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+   
+
+</head> 
+
+<body class="body-purple">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Comsoft Identity Server</span><span class="text-bold"> Docs</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Topics and References</li>
+                </ol>
+                
+              
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+               
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="Prerequisites" class="doc-section">
+
+                                <h2 class="section-title">Overview</h2>
+                                <div class="section-block">
+                                    <p>
+                                        This section will give some instructions for various common IdentityServer topics and references. They start with the absolute basics and become more complex - it is recommended you do them in order.
+                                    </p>
+                                    <p>
+
+
+
+                                </div>
+
+                            </section><!--//doc-section-->
+
+                            <section id="Topics" class="doc-section">
+                                <h2 class="section-title">Topics</h2>
+                                <div itemprop="articleBody">
+
+                                    <div class="section" id="sec11">
+                                        <h2>Defining identity resources</h2>
+                                        <p>
+                                            Identity resources are data like user ID, name, or email address of a user.
+                                            An identity resource has a unique name, and you can assign arbitrary claim types to it. These claims will then be included in the identity token for the user.
+                                            The client will use the <code class="docutils literal notranslate"><span class="pre">scope</span></code> parameter to request access to an identity resource.
+                                        </p>
+                                        <p>
+                                            The OpenID Connect specification specifies a couple of standard identity resources.
+                                            The minimum requirement is, that you provide support for emitting a unique ID for your users - also called the subject id.
+                                            This is done by exposing the standard identity resource called <code class="docutils literal notranslate"><span class="pre">openid</span></code>:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span> <span class="n">GetIdentityResources</span><span class="p">()</span>
+<span class="p">{</span>
+                                                <span class="k">return</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">OpenId</span><span class="p">()</span>
+                                                <span class="p">};</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            The <cite>IdentityResources</cite> class supports all scopes defined in the specification (openid, email, profile, telephone, and address).
+                                            If you want to support them all, you can add them to your list of supported identity resources:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span> <span class="n">GetIdentityResources</span><span class="p">()</span>
+<span class="p">{</span>
+                                                <span class="k">return</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">OpenId</span><span class="p">(),</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">Email</span><span class="p">(),</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">Profile</span><span class="p">(),</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">Phone</span><span class="p">(),</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">Address</span><span class="p">()</span>
+                                                <span class="p">};</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section" id="sec12">
+                                        <h2>Defining custom identity resources</h2>
+                                        <p>
+                                            You can also define custom identity resources. Create a new <cite>IdentityResource</cite> class, give it a name and optionally a display name and description
+                                            and define which user claims should be included in the identity token when this resource gets requested:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span> <span class="n">GetIdentityResources</span><span class="p">()</span>
+<span class="p">{</span>
+                                                <span class="kt">var</span> <span class="n">customProfile</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IdentityResource</span><span class="p">(</span>
+                                                <span class="n">name</span><span class="p">:</span> <span class="s">"custom.profile"</span><span class="p">,</span>
+                                                <span class="n">displayName</span><span class="p">:</span> <span class="s">"Custom profile"</span><span class="p">,</span>
+                                                <span class="n">claimTypes</span><span class="p">:</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"name"</span><span class="p">,</span> <span class="s">"email"</span><span class="p">,</span> <span class="s">"status"</span> <span class="p">});</span>
+
+                                                <span class="k">return</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IdentityResource</span><span class="p">&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">OpenId</span><span class="p">(),</span>
+                                                <span class="k">new</span> <span class="n">IdentityResources</span><span class="p">.</span><span class="n">Profile</span><span class="p">(),</span>
+                                                <span class="n">customProfile</span>
+                                                <span class="p">};</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>See the reference section for more information on identity resource settings.</p>
+                                    </div>
+
+                                    <div class="section" id="sec13">
+                                        <h2>Defining API resources</h2>
+                                        <p>To allow clients to request access tokens for APIs, you need to define API resources, e.g.:</p>
+                                        <p>To get access tokens for APIs, you also need to register them as a scope. This time the scope type is of type <cite>Resource</cite>:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ApiResource</span><span class="p">&gt;</span> <span class="n">GetApis</span><span class="p">()</span>
+<span class="p">{</span>
+                                                <span class="k">return</span> <span class="k">new</span><span class="p">[]</span>
+                                                <span class="p">{</span>
+                                                <span class="c1">// simple API with a single scope (in this case the scope name is the same as the api name)</span>
+                                                <span class="k">new</span> <span class="nf">ApiResource</span><span class="p">(</span><span class="s">"api1"</span><span class="p">,</span> <span class="s">"Some API 1"</span><span class="p">),</span>
+
+                                                <span class="c1">// expanded version if more control is needed</span>
+                                                <span class="k">new</span> <span class="n">ApiResource</span>
+                                                <span class="p">{</span>
+                                                <span class="n">Name</span> <span class="p">=</span> <span class="s">"api2"</span><span class="p">,</span>
+
+                                                <span class="c1">// secret for using introspection endpoint</span>
+                                                <span class="n">ApiSecrets</span> <span class="p">=</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="nf">Secret</span><span class="p">(</span><span class="s">"secret"</span><span class="p">.</span><span class="n">Sha256</span><span class="p">())</span>
+                                                <span class="p">},</span>
+
+                                                <span class="c1">// include the following using claims in access token (in addition to subject id)</span>
+                                                <span class="n">UserClaims</span> <span class="p">=</span> <span class="p">{</span> <span class="n">JwtClaimTypes</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">JwtClaimTypes</span><span class="p">.</span><span class="n">Email</span> <span class="p">},</span>
+
+                                                <span class="c1">// this API defines two scopes</span>
+                                                <span class="n">Scopes</span> <span class="p">=</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="nf">Scope</span><span class="p">()</span>
+                                                <span class="p">{</span>
+                                                <span class="n">Name</span> <span class="p">=</span> <span class="s">"api2.full_access"</span><span class="p">,</span>
+                                                <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">"Full access to API 2"</span><span class="p">,</span>
+                                                <span class="p">},</span>
+                                                <span class="k">new</span> <span class="n">Scope</span>
+                                                <span class="p">{</span>
+                                                <span class="n">Name</span> <span class="p">=</span> <span class="s">"api2.read_only"</span><span class="p">,</span>
+                                                <span class="n">DisplayName</span> <span class="p">=</span> <span class="s">"Read only access to API 2"</span>
+                                                <span class="p">}</span>
+                                                <span class="p">}</span>
+                                                <span class="p">}</span>
+                                                <span class="p">};</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>See the reference section for more information on API resource settings.</p>
+
+                                    </div>
+
+                                    <div class="section" id="sec14">
+                                        <h1>Defining Clients</h1>
+                                        <p>Clients represent applications that can request tokens from your identityserver.</p>
+                                        <p>The details vary, but you typically define the following common settings for a client:</p>
+                                        <ul class="simple">
+                                            <li>a unique client ID</li>
+                                            <li>a secret if needed</li>
+                                            <li>the allowed interactions with the token service (called a grant type)</li>
+                                            <li>a network location where identity and/or access token gets sent to (called a redirect URI)</li>
+                                            <li>a list of scopes (aka resources) the client is allowed to access</li>
+
+                                            <li>a unique client ID</li>
+                                            <li>a secret if needed</li>
+                                            <li>the allowed interactions with the token service (called a grant type)</li>
+                                            <li>a network location where identity and/or access token gets sent to (called a redirect URI)</li>
+                                            <li>a list of scopes (aka resources) the client is allowed to access</li>
+                                        </ul>
+
+
+                                    </div>
+                                    <div class="section" id="sec15">
+                                        <h2>Defining a client for server to server communication</h2>
+                                        <p>In this scenario no interactive user is present - a service (aka client) wants to communicate with an API (aka scope):</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Clients</span>
+<span class="p">{</span>
+                                                <span class="k">public</span> <span class="k">static</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Client</span><span class="p">&gt;</span> <span class="n">Get</span><span class="p">()</span>
+                                                <span class="p">{</span>
+                                                <span class="k">return</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Client</span><span class="p">&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="k">new</span> <span class="n">Client</span>
+                                                <span class="p">{</span>
+                                                <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;service.client&quot;</span><span class="p">,</span>
+                                                <span class="n">ClientSecrets</span> <span class="p">=</span> <span class="p">{</span> <span class="k">new</span> <span class="n">Secret</span><span class="p">(</span><span class="s">&quot;secret&quot;</span><span class="p">.</span><span class="n">Sha256</span><span class="p">())</span> <span class="p">},</span>
+
+                                                <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">ClientCredentials</span><span class="p">,</span>
+                                                <span class="n">AllowedScopes</span> <span class="p">=</span> <span class="p">{</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;api2.read_only&quot;</span> <span class="p">}</span>
+                                                <span class="p">}</span>
+                                                <span class="p">};</span>
+                                                <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section" id="sec16">
+                                        <h2>Defining browser-based JavaScript client (e.g. SPA) for user authentication and delegated access and API</h2>
+                                        <p>This client uses the so called implicit flow to request an identity and access token from JavaScript:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="kt">var</span> <span class="n">jsClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Client</span>
+<span class="p">{</span>
+                                                <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;js&quot;</span><span class="p">,</span>
+                                                <span class="n">ClientName</span> <span class="p">=</span> <span class="s">&quot;JavaScript Client&quot;</span><span class="p">,</span>
+                                                <span class="n">ClientUri</span> <span class="p">=</span> <span class="s">&quot;http://identityserver.io&quot;</span><span class="p">,</span>
+
+                                                <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">Implicit</span><span class="p">,</span>
+                                                <span class="n">AllowAccessTokensViaBrowser</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+
+                                                <span class="n">RedirectUris</span> <span class="p">=</span>           <span class="p">{</span> <span class="s">&quot;http://localhost:7017/index.html&quot;</span> <span class="p">},</span>
+                                                <span class="n">PostLogoutRedirectUris</span> <span class="p">=</span> <span class="p">{</span> <span class="s">&quot;http://localhost:7017/index.html&quot;</span> <span class="p">},</span>
+                                                <span class="n">AllowedCorsOrigins</span> <span class="p">=</span>     <span class="p">{</span> <span class="s">&quot;http://localhost:7017&quot;</span> <span class="p">},</span>
+
+                                                <span class="n">AllowedScopes</span> <span class="p">=</span>
+                                                <span class="p">{</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">OpenId</span><span class="p">,</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">Profile</span><span class="p">,</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">Email</span><span class="p">,</span>
+
+                                                <span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;api2.read_only&quot;</span>
+                                                <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section" id="sec17">
+                                        <span id="startclientsmvc"></span><h2>Defining a server-side web application (e.g. MVC) for use authentication and delegated API access</h2>
+                                        <p>
+                                            Interactive server side (or native desktop/mobile) applications use the hybrid flow.
+                                            This flow gives you the best security because the access tokens are transmitted via back-channel calls only (and gives you access to refresh tokens):
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="kt">var</span> <span class="n">mvcClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Client</span>
+<span class="p">{</span>
+                                                <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;mvc&quot;</span><span class="p">,</span>
+                                                <span class="n">ClientName</span> <span class="p">=</span> <span class="s">&quot;MVC Client&quot;</span><span class="p">,</span>
+                                                <span class="n">ClientUri</span> <span class="p">=</span> <span class="s">&quot;http://identityserver.io&quot;</span><span class="p">,</span>
+
+                                                <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">Hybrid</span><span class="p">,</span>
+                                                <span class="n">AllowOfflineAccess</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+                                                <span class="n">ClientSecrets</span> <span class="p">=</span> <span class="p">{</span> <span class="k">new</span> <span class="n">Secret</span><span class="p">(</span><span class="s">&quot;secret&quot;</span><span class="p">.</span><span class="n">Sha256</span><span class="p">())</span> <span class="p">},</span>
+
+                                                <span class="n">RedirectUris</span> <span class="p">=</span>           <span class="p">{</span> <span class="s">&quot;http://localhost:21402/signin-oidc&quot;</span> <span class="p">},</span>
+                                                <span class="n">PostLogoutRedirectUris</span> <span class="p">=</span> <span class="p">{</span> <span class="s">&quot;http://localhost:21402/&quot;</span> <span class="p">},</span>
+                                                <span class="n">FrontChannelLogoutUri</span> <span class="p">=</span>  <span class="s">&quot;http://localhost:21402/signout-oidc&quot;</span><span class="p">,</span>
+
+                                                <span class="n">AllowedScopes</span> <span class="p">=</span>
+                                                <span class="p">{</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">OpenId</span><span class="p">,</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">Profile</span><span class="p">,</span>
+                                                <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">StandardScopes</span><span class="p">.</span><span class="n">Email</span><span class="p">,</span>
+
+                                                <span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;api2.read_only&quot;</span>
+                                                <span class="p">},</span>
+<span class="p">};</span>
+</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section" id="sec18">
+                                        <h2>Defining clients in appsettings.json</h2>
+                                        <p>The <code class="docutils literal notranslate"><span class="pre">AddInMemoryClients</span></code> extensions method also supports adding clients from the ASP.NET Core configuration file. This allows you to define static clients directly from the appsettings.json file:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="s">&quot;IdentityServer&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                <span class="s">&quot;IssuerUri&quot;</span><span class="p">:</span> <span class="s">&quot;urn:sso.company.com&quot;</span><span class="p">,</span>
+                                                <span class="s">&quot;Clients&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                                <span class="p">{</span>
+                                                <span class="s">&quot;Enabled&quot;</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+                                                <span class="s">&quot;ClientId&quot;</span><span class="p">:</span> <span class="s">&quot;local-dev&quot;</span><span class="p">,</span>
+                                                <span class="s">&quot;ClientName&quot;</span><span class="p">:</span> <span class="s">&quot;Local Development&quot;</span><span class="p">,</span>
+                                                <span class="s">&quot;ClientSecrets&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="s">&quot;Value&quot;</span><span class="p">:</span> <span class="s">&quot;&lt;Insert Sha256 hash of the secret encoded as Base64 string&gt;&quot;</span> <span class="p">}</span> <span class="p">],</span>
+                                                <span class="s">&quot;AllowedGrantTypes&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&quot;implicit&quot;</span> <span class="p">],</span>
+                                                <span class="s">&quot;AllowedScopes&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&quot;openid&quot;</span><span class="p">,</span> <span class="s">&quot;profile&quot;</span> <span class="p">],</span>
+                                                <span class="s">&quot;RedirectUris&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s">&quot;https://localhost:5001/signin-oidc&quot;</span> <span class="p">],</span>
+                                                <span class="s">&quot;RequireConsent&quot;</span><span class="p">:</span> <span class="k">false</span>
+                                                <span class="p">}</span>
+                                                <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>Then pass the configuration section to the <code class="docutils literal notranslate"><span class="pre">AddInMemoryClients</span></code> method:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="n">AddInMemoryClients</span><span class="p">(</span><span class="n">configuration</span><span class="p">.</span><span class="n">GetSection</span><span class="p">(</span><span class="s">&quot;IdentityServer:Clients&quot;</span><span class="p">))</span>
+</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section" id="sec19">
+                                        <h1>Sign-in</h1>
+                                        <p>In order for IdentityServer to issue tokens on behalf of a user, that user must sign-in to IdentityServer.</p>
+                                        <div class="section" id="cookie-authentication">
+                                            <h2>Cookie authentication</h2>
+                                            <p>Authentication is tracked with a cookie managed by the  handler from ASP.NET Core.</p>
+                                            <p>
+                                                IdentityServer registers two cookie handlers (one for the authentication session and one for temporary external cookies). These are used by default and you can get their
+                                                names from the <code class="docutils literal notranslate"><span class="pre">IdentityServerConstants</span></code> class (<code class="docutils literal notranslate"><span class="pre">DefaultCookieAuthenticationScheme</span></code> and <code class="docutils literal notranslate"><span class="pre">ExternalCookieAuthenticationScheme</span></code>) if you want to reference them manually.
+                                            </p>
+                                            <p>
+                                                We only expose basic settings for these cookies (expiration and sliding), and you can register your own cookie handlers if you need more control.
+                                                IdentityServer uses whichever cookie handler matches the <code class="docutils literal notranslate"><span class="pre">DefaultAuthenticateScheme</span></code> as configured on the <code class="docutils literal notranslate"><span class="pre">AuthenticationOptions</span></code> when using <code class="docutils literal notranslate"><span class="pre">AddAuthentication</span></code> from ASP.NET Core.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="section" id="sec20">
+                                        <h2>Overriding cookie handler configuration</h2>
+                                        <p>
+                                            If you wish to use your own cookie authentication handler, then you must configure it yourself.
+                                            This must be done in <code class="docutils literal notranslate"><span class="pre">ConfigureServices</span></code> after registering IdentityServer in DI (with <code class="docutils literal notranslate"><span class="pre">AddIdentityServer</span></code>).
+                                            For example:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">AddIdentityServer</span><span class="p">()</span>
+                                                <span class="p">.</span><span class="n">AddInMemoryClients</span><span class="p">(</span><span class="n">Clients</span><span class="p">.</span><span class="n">Get</span><span class="p">())</span>
+                                                <span class="p">.</span><span class="n">AddInMemoryIdentityResources</span><span class="p">(</span><span class="n">Resources</span><span class="p">.</span><span class="n">GetIdentityResources</span><span class="p">())</span>
+                                                <span class="p">.</span><span class="n">AddInMemoryApiResources</span><span class="p">(</span><span class="n">Resources</span><span class="p">.</span><span class="n">GetApiResources</span><span class="p">())</span>
+                                                <span class="p">.</span><span class="n">AddDeveloperSigningCredential</span><span class="p">()</span>
+                                                <span class="p">.</span><span class="n">AddTestUsers</span><span class="p">(</span><span class="n">TestUsers</span><span class="p">.</span><span class="n">Users</span><span class="p">);</span>
+
+<span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="s">&quot;MyCookie&quot;</span><span class="p">)</span>
+                                                <span class="p">.</span><span class="n">AddCookie</span><span class="p">(</span><span class="s">&quot;MyCookie&quot;</span><span class="p">,</span> <span class="n">options</span> <span class="p">=&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="n">options</span><span class="p">.</span><span class="n">ExpireTimeSpan</span> <span class="p">=</span> <span class="p">...;</span>
+                                                <span class="p">});</span>
+</pre>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="section" id="sec21">
+                                        <h2>Login User Interface and Identity Management System</h2>
+                                        <p>
+                                            IdentityServer does not provide any user-interface or user database for user authentication.
+                                            These are things you are expected to provide or develop yourself.
+                                        </p>
+                                        <p>If you need a starting point for a basic UI (login, logout, consent and manage grants),you can use our .</p>
+                                        <p>
+                                            The quickstart UI authenticates users against an in-memory database. You would replace those bits with access to your real user store.
+                                            We have samples that use ASP.NET Identity.
+                                        </p>
+                                    </div>
+                                    <div class="section" id="sec22">
+                                        <h2>Login Workflow</h2>
+                                        <p>
+                                            When IdentityServer receives a request at the authorization endpoint and the user is not authenticated, the user will be redirected to the configured login page.
+                                            You must inform IdentityServer of the path to your login page via the <code class="docutils literal notranslate"><span class="pre">UserInteraction</span></code> settings on the <a class="reference internal" href="../reference/options.html#refoptions"><span class="std std-ref">options</span></a> (the default is <code class="docutils literal notranslate"><span class="pre">/account/login</span></code>).
+                                            A <code class="docutils literal notranslate"><span class="pre">returnUrl</span></code> parameter will be passed informing your login page where the user should be redirected once login is complete.
+                                        </p>
+                                        <img alt="../_images/signin_flow.png" src="assets/images/demo/ID430.png" />
+
+                                    </div>
+                                    <div class="section" id="sec23">
+                                        <h2>Login Context</h2>
+                                        <p>
+                                            On your login page you might require information about the context of the request in order to customize the login experience
+                                            (such as client, prompt parameter, IdP hint, or something else).
+                                            This is made available via the <code class="docutils literal notranslate"><span class="pre">GetAuthorizationContextAsync</span></code> API on the interaction service.
+                                        </p>
+                                    </div>
+                                    <div class="section" id="sec24">
+                                        <h2>Issuing a cookie and Claims</h2>
+                                        <p>
+                                            There are authentication-related extension methods on the <code class="docutils literal notranslate"><span class="pre">HttpContext</span></code> from ASP.NET Core to issue the authentication cookie and sign a user in.
+                                            The authentication scheme used must match the cookie handler you are using (see above).
+                                        </p>
+                                        <p>
+                                            When you sign the user in you must issue at least a <code class="docutils literal notranslate"><span class="pre">sub</span></code> claim and a <code class="docutils literal notranslate"><span class="pre">name</span></code> claim.
+                                            IdentityServer also provides a few <code class="docutils literal notranslate"><span class="pre">SignInAsync</span></code> extension methods on the <code class="docutils literal notranslate"><span class="pre">HttpContext</span></code> to make this more convenient.
+                                        </p>
+                                        <p>
+                                            You can also optionally issue an <code class="docutils literal notranslate"><span class="pre">idp</span></code> claim (for the identity provider name), an <code class="docutils literal notranslate"><span class="pre">amr</span></code> claim (for the authentication method used), and/or an <code class="docutils literal notranslate"><span class="pre">auth_time</span></code> claim (for the epoch time a user authenticated).
+                                            If you do not provide these, then IdentityServer will provide default values.
+                                        </p>
+                                    </div>
+
+                                    <div class="section" id="sec25">
+                                        <h1>Sign-out</h1>
+                                        <p>
+                                            Signing out of IdentityServer is as simple as removing the authentication cookie,
+                                            but for doing a complete federated sign-out, we must consider signing the user out of the client applications (and maybe even up-stream identity providers) as well.
+                                        </p>
+                                    </div>
+                                    <div class="section" id="sec26">
+                                        <h2>Removing the authentication cookie</h2>
+                                        <p>
+                                            To remove the authentication cookie, simply use the <code class="docutils literal notranslate"><span class="pre">SignOutAsync</span></code> extension method on the <code class="docutils literal notranslate"><span class="pre">HttpContext</span></code>.
+                                            You will need to pass the scheme used (which is provided by <code class="docutils literal notranslate"><span class="pre">IdentityServerConstants.DefaultCookieAuthenticationScheme</span></code> unless you have changed it):
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">await</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">SignOutAsync</span><span class="p">(</span><span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">DefaultCookieAuthenticationScheme</span><span class="p">);</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>Or you can use the convenience extension method that is provided by IdentityServer:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">await</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">SignOutAsync</span><span class="p">();</span>
+</pre>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="section" id="sec27">
+                                        <h2>Notifying clients that the user has signed-out</h2>
+                                        <p>
+                                            As part of the signout process you will want to ensure client applications are informed that the user has signed out.
+                                            IdentityServer supports the front-channel specification for server-side clients (e.g. MVC),
+                                            the back-channel  specification for server-side clients (e.g. MVC),
+                                            and the session management specification for browser-based JavaScript clients (e.g. SPA, React, Angular, etc.).
+                                        </p>
+                                        <p><strong>Front-channel server-side clients</strong></p>
+                                        <p>
+                                            To signout the user from the server-side client applications via the front-channel spec, the “logged out” page in IdentityServer must render an <code class="docutils literal notranslate"><span class="pre">&lt;iframe&gt;</span></code> to notify the clients that the user has signed out.
+                                            Clients that wish to be notified must have the <code class="docutils literal notranslate"><span class="pre">FrontChannelLogoutUri</span></code> configuration value set.
+                                            IdentityServer tracks which clients the user has signed into, and provides an API called <code class="docutils literal notranslate"><span class="pre">GetLogoutContextAsync</span></code> on the <code class="docutils literal notranslate"><span class="pre">IIdentityServerInteractionService</span></code> .
+                                            This API returns a <code class="docutils literal notranslate"><span class="pre">LogoutRequest</span></code> object with a <code class="docutils literal notranslate"><span class="pre">SignOutIFrameUrl</span></code> property that your logged out page must render into an <code class="docutils literal notranslate"><span class="pre">&lt;iframe&gt;</span></code>.
+                                        </p>
+                                        <p><strong>Back-channel server-side clients</strong></p>
+                                        <p>
+                                            To signout the user from the server-side client applications via the back-channel spec, the <code class="docutils literal notranslate"><span class="pre">SignOutIFrameUrl</span></code> endpoint in IdentityServer will automatically trigger server-to-server invocation passing a signed sign-out request to the client.
+                                            This means that even if there are no front-channel clients, the “logged out” page in IdentityServer must still render an <code class="docutils literal notranslate"><span class="pre">&lt;iframe&gt;</span></code> to the <code class="docutils literal notranslate"><span class="pre">SignOutIFrameUrl</span></code> as described above.
+                                            Clients that wish to be notified must have the <code class="docutils literal notranslate"><span class="pre">BackChannelLogoutUri</span></code> configuration value set.
+                                        </p>
+                                        <p><strong>Browser-based JavaScript clients</strong></p>
+                                        <p>
+                                            Given how the specification is designed, there is nothing special in IdentityServer that you need to do to notify these clients that the user has signed out.
+                                            The clients, though, must perform monitoring on the <cite>check_session_iframe</cite>, and this is implemented by the oidc-client JavaScript library.
+                                        </p>
+                                    </div>
+                                    <div class="section" id="sec28">
+                                        <h2>Sign-out initiated by a client application</h2>
+                                        <p>
+                                            If sign-out was initiated by a client application, then the client first redirected the user to the end session endpoint.
+                                            Processing at the end session endpoint might require some temporary state to be maintained (e.g. the client’s post logout redirect uri) across the redirect to the logout page.
+                                            This state might be of use to the logout page, and the identifier for the state is passed via a <cite>logoutId</cite> parameter to the logout page.
+                                        </p>
+                                        <p>
+                                            The <code class="docutils literal notranslate"><span class="pre">GetLogoutContextAsync</span></code> API on the interaction service can be used to load the state.
+                                            Of interest on the <code class="docutils literal notranslate"><span class="pre">LogoutRequest</span></code> model context class is the <code class="docutils literal notranslate"><span class="pre">ShowSignoutPrompt</span></code> which indicates if the request for sign-out has been authenticated, and therefore it’s safe to not prompt the user for sign-out.
+                                        </p>
+                                        <p>
+                                            By default this state is managed as a protected data structure passed via the <cite>logoutId</cite> value.
+                                            If you wish to use some other persistence between the end session endpoint and the logout page, then you can implement <code class="docutils literal notranslate"><span class="pre">IMessageStore&lt;LogoutMessage&gt;</span></code> and register the implementation in DI.
+                                        </p>
+                                    </div>
+
+                                    <div class="section" id="sec29">
+                                        <h1>Sign-out of External Identity Providers</h1>
+                                        <p>
+                                            When a user is signing-out of IdentityServer, and they have used an external identity provider to sign-in then it is likely that they should be redirected to also sign-out of the external provider.
+                                            Not all external providers support sign-out, as it depends on the protocol and features they support.
+                                        </p>
+                                        <p>
+                                            To detect that a user must be redirected to an external identity provider for sign-out is typically done by using a <code class="docutils literal notranslate"><span class="pre">idp</span></code> claim issued into the cookie at IdentityServer.
+                                            The value set into this claim is the <code class="docutils literal notranslate"><span class="pre">AuthenticationScheme</span></code> of the corresponding authentication middleware.
+                                            At sign-out time this claim is consulted to know if an external sign-out is required.
+                                        </p>
+                                        <p>
+                                            Redirecting the user to an external identity provider is problematic due to the cleanup and state management already required by the normal sign-out workflow.
+                                            The only way to then complete the normal sign-out and cleanup process at IdentityServer is to then request from the external identity provider that after its logout that the user be redirected back to IdentityServer.
+                                            Not all external providers support post-logout redirects, as it depends on the protocol and features they support.
+                                        </p>
+                                        <p>
+                                            The workflow at sign-out is then to revoke IdentityServer’s authentication cookie, and then redirect to the external provider requesting a post-logout redirect.
+                                            The post-logout redirect should maintain the necessary sign-out state (i.e. the <code class="docutils literal notranslate"><span class="pre">logoutId</span></code> parameter value).
+                                            To redirect back to IdentityServer after the external provider sign-out, the <code class="docutils literal notranslate"><span class="pre">RedirectUri</span></code> should be used on the <code class="docutils literal notranslate"><span class="pre">AuthenticationProperties</span></code> when using ASP.NET Core’s <code class="docutils literal notranslate"><span class="pre">SignOutAsync</span></code> API, for example:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="na">[HttpPost]</span>
+<span class="na">[ValidateAntiForgeryToken]</span>
+<span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Logout</span><span class="p">(</span><span class="n">LogoutInputModel</span> <span class="n">model</span><span class="p">)</span>
+<span class="p">{</span>
+                                                <span class="c1">// build a model so the logged out page knows what to display</span>
+                                                <span class="kt">var</span> <span class="n">vm</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_account</span><span class="p">.</span><span class="n">BuildLoggedOutViewModelAsync</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">LogoutId</span><span class="p">);</span>
+
+                                                <span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">User</span><span class="p">;</span>
+                                                <span class="k">if</span> <span class="p">(</span><span class="n">user</span><span class="p">?.</span><span class="n">Identity</span><span class="p">.</span><span class="n">IsAuthenticated</span> <span class="p">==</span> <span class="k">true</span><span class="p">)</span>
+                                                <span class="p">{</span>
+                                                <span class="c1">// delete local authentication cookie</span>
+                                                <span class="k">await</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">SignOutAsync</span><span class="p">();</span>
+
+                                                <span class="c1">// raise the logout event</span>
+                                                <span class="k">await</span> <span class="n">_events</span><span class="p">.</span><span class="n">RaiseAsync</span><span class="p">(</span><span class="k">new</span> <span class="n">UserLogoutSuccessEvent</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">GetSubjectId</span><span class="p">(),</span> <span class="n">user</span><span class="p">.</span><span class="n">GetName</span><span class="p">()));</span>
+                                                <span class="p">}</span>
+
+                                                <span class="c1">// check if we need to trigger sign-out at an upstream identity provider</span>
+                                                <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">TriggerExternalSignout</span><span class="p">)</span>
+                                                <span class="p">{</span>
+                                                <span class="c1">// build a return URL so the upstream provider will redirect back</span>
+                                                <span class="c1">// to us after the user has logged out. this allows us to then</span>
+                                                <span class="c1">// complete our single sign-out processing.</span>
+                                                <span class="kt">string</span> <span class="n">url</span> <span class="p">=</span> <span class="n">Url</span><span class="p">.</span><span class="n">Action</span><span class="p">(</span><span class="s">&quot;Logout&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="p">{</span> <span class="n">logoutId</span> <span class="p">=</span> <span class="n">vm</span><span class="p">.</span><span class="n">LogoutId</span> <span class="p">});</span>
+
+                                                <span class="c1">// this triggers a redirect to the external provider for sign-out</span>
+                                                <span class="k">return</span> <span class="nf">SignOut</span><span class="p">(</span><span class="k">new</span> <span class="n">AuthenticationProperties</span> <span class="p">{</span> <span class="n">RedirectUri</span> <span class="p">=</span> <span class="n">url</span> <span class="p">},</span> <span class="n">vm</span><span class="p">.</span><span class="n">ExternalAuthenticationScheme</span><span class="p">);</span>
+                                                <span class="p">}</span>
+
+                                                <span class="k">return</span> <span class="nf">View</span><span class="p">(</span><span class="s">&quot;LoggedOut&quot;</span><span class="p">,</span> <span class="n">vm</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>Once the user is signed-out of the external provider and then redirected back, the normal sign-out processing at IdentityServer should execute which involves processing the <code class="docutils literal notranslate"><span class="pre">logoutId</span></code> and doing all necessary cleanup.</p>
+                                    </div>
+
+                                    <div class="section" id="sec30">
+                                        <h1>Protecting APIs</h1>
+                                        <p>IdentityServer issues access tokens in the <a class="reference external" href="https://tools.ietf.org/html/rfc7519">JWT</a> (JSON Web Token) format by default.</p>
+                                        <p>
+                                            Every relevant platform today has support for validating JWT tokens, a good list of JWT libraries can be found <a class="reference external" href="https://jwt.io">here</a>.
+                                            Popular libraries are e.g.:
+                                        </p>
+                                        <ul class="simple">
+                                            <li><a class="reference external" href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/">JWT bearer authentication handler</a> for ASP.NET Core</li>
+                                            <li><a class="reference external" href="https://www.nuget.org/packages/Microsoft.Owin.Security.Jwt">JWT bearer authentication middleware</a> for Katana</li>
+                                            <li><a class="reference external" href="https://identityserver.github.io/Documentation/docsv2/consuming/overview.html">IdentityServer authentication middleware</a> for Katana</li>
+                                            <li><a class="reference external" href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a> for nodejs</li>
+                                        </ul>
+                                        <p>Protecting a ASP.NET Core-based API is only a matter of configuring the JWT bearer authentication handler in DI, and adding the authentication middleware to the pipeline:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+<span class="p">{</span>
+                                                <span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+                                                <span class="p">{</span>
+                                                <span class="n">services</span><span class="p">.</span><span class="n">AddMvc</span><span class="p">();</span>
+
+                                                <span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">JwtBearerDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">)</span>
+                                                <span class="p">.</span><span class="n">AddJwtBearer</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+                                                <span class="p">{</span>
+                                                <span class="c1">// base-address of your identityserver</span>
+                                                <span class="n">options</span><span class="p">.</span><span class="n">Authority</span> <span class="p">=</span> <span class="s">&quot;https://demo.identityserver.io&quot;</span><span class="p">;</span>
+
+                                                <span class="c1">// name of the API resource</span>
+                                                <span class="n">options</span><span class="p">.</span><span class="n">Audience</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">;</span>
+                                                <span class="p">});</span>
+                                                <span class="p">}</span>
+
+                                                <span class="k">public</span> <span class="k">void</span> <span class="nf">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">ILoggerFactory</span> <span class="n">loggerFactory</span><span class="p">)</span>
+                                                <span class="p">{</span>
+                                                <span class="n">app</span><span class="p">.</span><span class="n">UseAuthentication</span><span class="p">();</span>
+                                                <span class="n">app</span><span class="p">.</span><span class="n">UseMvc</span><span class="p">();</span>
+                                                <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <div class="section" id="the-identityserver-authentication-handler">
+                                            <h2>The IdentityServer authentication handler</h2>
+                                            <p>
+                                                Our authentication handler serves the same purpose as the above handler
+                                                (in fact it uses the Microsoft JWT library internally), but adds a couple of additional features:
+                                            </p>
+                                            <ul class="simple">
+                                                <li>support for both JWTs and reference tokens</li>
+                                                <li>extensible caching for reference tokens</li>
+                                                <li>unified configuration model</li>
+                                                <li>scope validation</li>
+                                            </ul>
+                                            <p>For the simplest case, our handler configuration looks very similar to the above snippet:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Startup</span>
+<span class="p">{</span>
+                                                    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConfigureServices</span><span class="p">(</span><span class="n">IServiceCollection</span> <span class="n">services</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">services</span><span class="p">.</span><span class="n">AddMvc</span><span class="p">();</span>
+
+                                                    <span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">(</span><span class="n">IdentityServerAuthenticationDefaults</span><span class="p">.</span><span class="n">AuthenticationScheme</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">AddIdentityServerAuthentication</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+                                                    <span class="p">{</span>
+                                                    <span class="c1">// base-address of your identityserver</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Authority</span> <span class="p">=</span> <span class="s">&quot;https://demo.identityserver.io&quot;</span><span class="p">;</span>
+
+                                                    <span class="c1">// name of the API resource</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">ApiName</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">;</span>
+                                                    <span class="p">});</span>
+                                                    <span class="p">}</span>
+
+                                                    <span class="k">public</span> <span class="k">void</span> <span class="nf">Configure</span><span class="p">(</span><span class="n">IApplicationBuilder</span> <span class="n">app</span><span class="p">,</span> <span class="n">ILoggerFactory</span> <span class="n">loggerFactory</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">app</span><span class="p">.</span><span class="n">UseAuthentication</span><span class="p">();</span>
+                                                    <span class="n">app</span><span class="p">.</span><span class="n">UseMvc</span><span class="p">();</span>
+                                                    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                You can get the package from <a class="reference external" href="https://www.nuget.org/packages/IdentityServer4.AccessTokenValidation/">nuget</a>
+                                                or <a class="reference external" href="https://github.com/IdentityServer/IdentityServer4.AccessTokenValidation">github</a>.
+                                            </p>
+                                        </div>
+                                        <div class="section" id="supporting-reference-tokens">
+                                            <h2>Supporting reference tokens</h2>
+                                            <p>
+                                                If the incoming token is not a JWT, our middleware will contact the introspection endpoint found in the discovery document to validate the token.
+                                                Since the introspection endpoint requires authentication, you need to supply the configured API secret, e.g.:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="p">.</span><span class="n">AddIdentityServerAuthentication</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+                                                    <span class="c1">// base-address of your identityserver</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Authority</span> <span class="p">=</span> <span class="s">&quot;https://demo.identityserver.io&quot;</span><span class="p">;</span>
+
+                                                    <span class="c1">// name of the API resource</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">ApiName</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">;</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">ApiSecret</span> <span class="p">=</span> <span class="s">&quot;secret&quot;</span><span class="p">;</span>
+<span class="p">})</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>Typically, you don’t want to do a roundtrip to the introspection endpoint for each incoming request. The middleware has a built-in cache that you can enable like this:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="p">.</span><span class="n">AddIdentityServerAuthentication</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+                                                    <span class="c1">// base-address of your identityserver</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Authority</span> <span class="p">=</span> <span class="s">&quot;https://demo.identityserver.io&quot;</span><span class="p">;</span>
+
+                                                    <span class="c1">// name of the API resource</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">ApiName</span> <span class="p">=</span> <span class="s">&quot;api1&quot;</span><span class="p">;</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">ApiSecret</span> <span class="p">=</span> <span class="s">&quot;secret&quot;</span><span class="p">;</span>
+
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">EnableCaching</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">CacheDuration</span> <span class="p">=</span> <span class="n">TimeSpan</span><span class="p">.</span><span class="n">FromMinutes</span><span class="p">(</span><span class="m">10</span><span class="p">);</span> <span class="c1">// that&#39;s the default</span>
+<span class="p">})</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>The handler will use whatever <cite>IDistributedCache</cite> implementation is registered in the DI container (e.g. the standard <cite>MemoryDistributedCache</cite>).</p>
+                                        </div>
+                                        <div class="section" id="validating-scopes">
+                                            <h2>Validating scopes<a class="headerlink" href="#validating-scopes" title="Permalink to this headline">¶</a></h2>
+                                            <p>The <cite>ApiName</cite> property checks if the token has a matching audience (or short <code class="docutils literal notranslate"><span class="pre">aud</span></code>) claim.</p>
+                                            <p>In IdentityServer you can also sub-divide APIs into multiple scopes. If you need that granularity you can use the ASP.NET Core authorization policy system to check for scopes.</p>
+                                            <p><strong>Creating a global policy</strong>:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">services</span>
+                                                    <span class="p">.</span><span class="n">AddMvcCore</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+                                                    <span class="p">{</span>
+                                                    <span class="c1">// require scope1 or scope2</span>
+                                                    <span class="kt">var</span> <span class="n">policy</span> <span class="p">=</span> <span class="n">ScopePolicy</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;scope1&quot;</span><span class="p">,</span> <span class="s">&quot;scope2&quot;</span><span class="p">);</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Filters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">AuthorizeFilter</span><span class="p">(</span><span class="n">policy</span><span class="p">));</span>
+                                                    <span class="p">})</span>
+                                                    <span class="p">.</span><span class="n">AddJsonFormatters</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">AddAuthorization</span><span class="p">();</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p><strong>Composing a scope policy</strong>:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">AddAuthorization</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">AddPolicy</span><span class="p">(</span><span class="s">&quot;myPolicy&quot;</span><span class="p">,</span> <span class="n">builder</span> <span class="p">=&gt;</span>
+                                                    <span class="p">{</span>
+                                                    <span class="c1">// require scope1</span>
+                                                    <span class="n">builder</span><span class="p">.</span><span class="n">RequireScope</span><span class="p">(</span><span class="s">&quot;scope1&quot;</span><span class="p">);</span>
+                                                    <span class="c1">// and require scope2 or scope3</span>
+                                                    <span class="n">builder</span><span class="p">.</span><span class="n">RequireScope</span><span class="p">(</span><span class="s">&quot;scope2&quot;</span><span class="p">,</span> <span class="s">&quot;scope3&quot;</span><span class="p">);</span>
+                                                    <span class="p">});</span>
+<span class="p">});</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="section" id="sec31">
+                                        <h1>Logging</h1>
+                                        <p>
+                                            IdentityServer uses the standard logging facilities provided by ASP.NET Core.
+                                            The Microsoft  has a good intro and a description of the built-in logging providers.
+                                        </p>
+                                        <p>We are roughly following the Microsoft guidelines for usage of log levels:</p>
+                                        <ul class="simple">
+                                            <li><code class="docutils literal notranslate"><span class="pre">Trace</span></code> For information that is valuable only to a developer troubleshooting an issue. These messages may contain sensitive application data like tokens and should not be enabled in a production environment.</li>
+                                            <li><code class="docutils literal notranslate"><span class="pre">Debug</span></code> For following the internal flow and understanding why certain decisions are made. Has short-term usefulness during development and debugging.</li>
+                                            <li><code class="docutils literal notranslate"><span class="pre">Information</span></code> For tracking the general flow of the application. These logs typically have some long-term value.</li>
+                                            <li><code class="docutils literal notranslate"><span class="pre">Warning</span></code> For abnormal or unexpected events in the application flow. These may include errors or other conditions that do not cause the application to stop, but which may need to be investigated.</li>
+                                            <li><code class="docutils literal notranslate"><span class="pre">Error</span></code> For errors and exceptions that cannot be handled. Examples: failed validation of a protocol request.</li>
+                                            <li><code class="docutils literal notranslate"><span class="pre">Critical</span></code> For failures that require immediate attention. Examples: missing store implementation, invalid key material…</li>
+                                        </ul>
+                                        <div class="section" id="setup-for-serilog">
+                                            <h2>Setup for Serilog<a class="headerlink" href="#setup-for-serilog" title="Permalink to this headline">¶</a></h2>
+                                            <p>We personally like Serilog and the <code class="docutils literal notranslate"><span class="pre">Serilog.AspNetCore</span></code> package a lot. Give it a try:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+                                                    <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Activity</span><span class="p">.</span><span class="n">DefaultIdFormat</span> <span class="p">=</span> <span class="n">ActivityIdFormat</span><span class="p">.</span><span class="n">W3C</span><span class="p">;</span>
+
+                                                    <span class="n">Log</span><span class="p">.</span><span class="n">Logger</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LoggerConfiguration</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">MinimumLevel</span><span class="p">.</span><span class="n">Debug</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">MinimumLevel</span><span class="p">.</span><span class="n">Override</span><span class="p">(</span><span class="s">&quot;Microsoft&quot;</span><span class="p">,</span> <span class="n">LogEventLevel</span><span class="p">.</span><span class="n">Warning</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">MinimumLevel</span><span class="p">.</span><span class="n">Override</span><span class="p">(</span><span class="s">&quot;Microsoft.Hosting.Lifetime&quot;</span><span class="p">,</span> <span class="n">LogEventLevel</span><span class="p">.</span><span class="n">Information</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">MinimumLevel</span><span class="p">.</span><span class="n">Override</span><span class="p">(</span><span class="s">&quot;System&quot;</span><span class="p">,</span> <span class="n">LogEventLevel</span><span class="p">.</span><span class="n">Warning</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">MinimumLevel</span><span class="p">.</span><span class="n">Override</span><span class="p">(</span><span class="s">&quot;Microsoft.AspNetCore.Authentication&quot;</span><span class="p">,</span> <span class="n">LogEventLevel</span><span class="p">.</span><span class="n">Information</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">Enrich</span><span class="p">.</span><span class="n">FromLogContext</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">WriteTo</span><span class="p">.</span><span class="n">Console</span><span class="p">(</span><span class="n">outputTemplate</span><span class="p">:</span> <span class="s">&quot;[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">AnsiConsoleTheme</span><span class="p">.</span><span class="n">Code</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">CreateLogger</span><span class="p">();</span>
+
+                                                    <span class="k">try</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Log</span><span class="p">.</span><span class="n">Information</span><span class="p">(</span><span class="s">&quot;Starting host...&quot;</span><span class="p">);</span>
+                                                    <span class="n">CreateHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Run</span><span class="p">();</span>
+                                                    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>
+                                                    <span class="p">}</span>
+                                                    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Log</span><span class="p">.</span><span class="n">Fatal</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="s">&quot;Host terminated unexpectedly.&quot;</span><span class="p">);</span>
+                                                    <span class="k">return</span> <span class="m">1</span><span class="p">;</span>
+                                                    <span class="p">}</span>
+                                                    <span class="k">finally</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Log</span><span class="p">.</span><span class="n">CloseAndFlush</span><span class="p">();</span>
+                                                    <span class="p">}</span>
+                                                    <span class="p">}</span>
+
+                                                    <span class="k">public</span> <span class="k">static</span> <span class="n">IHostBuilder</span> <span class="nf">CreateHostBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span>
+                                                    <span class="n">Microsoft</span><span class="p">.</span><span class="n">Extensions</span><span class="p">.</span><span class="n">Hosting</span><span class="p">.</span><span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">UseSerilog</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">ConfigureWebHostDefaults</span><span class="p">(</span><span class="n">webBuilder</span> <span class="p">=&gt;</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">webBuilder</span><span class="p">.</span><span class="n">UseStartup</span><span class="p">&lt;</span><span class="n">Startup</span><span class="p">&gt;();</span>
+                                                    <span class="p">});</span>
+<span class="p">}</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section" id="sec32">
+                                        <h1>Events</h1>
+                                        <p>
+                                            While logging is more low level “printf” style - events represent higher level information about certain operations in IdentityServer.
+                                            Events are structured data and include event IDs, success/failure information, categories and details.
+                                            This makes it easy to query and analyze them and extract useful information that can be used for further processing.
+                                        </p>
+                                        <p>Events work great with event stores like <a class="reference external" href="https://www.elastic.co/webinars/introduction-elk-stack">ELK</a>, <a class="reference external" href="https://getseq.net/">Seq</a> or <a class="reference external" href="https://www.splunk.com/">Splunk</a>.</p>
+                                        <div class="section" id="emitting-events">
+                                            <h2>Emitting events</h2>
+                                            <p>Events are not turned on by default - but can be globally configured in the <code class="docutils literal notranslate"><span class="pre">ConfigureServices</span></code> method, e.g.:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">services</span><span class="p">.</span><span class="n">AddIdentityServer</span><span class="p">(</span><span class="n">options</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Events</span><span class="p">.</span><span class="n">RaiseSuccessEvents</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Events</span><span class="p">.</span><span class="n">RaiseFailureEvents</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                                                    <span class="n">options</span><span class="p">.</span><span class="n">Events</span><span class="p">.</span><span class="n">RaiseErrorEvents</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>To emit an event use the <code class="docutils literal notranslate"><span class="pre">IEventService</span></code> from the DI container and call the <code class="docutils literal notranslate"><span class="pre">RaiseAsync</span></code> method, e.g.:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="k">public</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Login</span><span class="p">(</span><span class="n">LoginInputModel</span> <span class="n">model</span><span class="p">)</span>
+<span class="p">{</span>
+                                                    <span class="k">if</span> <span class="p">(</span><span class="n">_users</span><span class="p">.</span><span class="n">ValidateCredentials</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Username</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">Password</span><span class="p">))</span>
+                                                    <span class="p">{</span>
+                                                    <span class="c1">// issue authentication cookie with subject ID and username</span>
+                                                    <span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="n">_users</span><span class="p">.</span><span class="n">FindByUsername</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Username</span><span class="p">);</span>
+                                                    <span class="k">await</span> <span class="n">_events</span><span class="p">.</span><span class="n">RaiseAsync</span><span class="p">(</span><span class="k">new</span> <span class="n">UserLoginSuccessEvent</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">Username</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">SubjectId</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="n">Username</span><span class="p">));</span>
+                                                    <span class="p">}</span>
+                                                    <span class="k">else</span>
+                                                    <span class="p">{</span>
+                                                    <span class="k">await</span> <span class="n">_events</span><span class="p">.</span><span class="n">RaiseAsync</span><span class="p">(</span><span class="k">new</span> <span class="n">UserLoginFailureEvent</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Username</span><span class="p">,</span> <span class="s">&quot;invalid credentials&quot;</span><span class="p">));</span>
+                                                    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section" id="custom-sinks">
+                                            <h2>Custom sinks</h2>
+                                            <p>
+                                                Our default event sink will simply serialize the event class to JSON and forward it to the ASP.NET Core logging system.
+                                                If you want to connect to a custom event store, implement the <code class="docutils literal notranslate"><span class="pre">IEventSink</span></code> interface and register it with DI.
+                                            </p>
+                                            <p>The following example uses <a class="reference external" href="https://getseq.net/">Seq</a> to emit events:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span> <span class="k">public</span> <span class="k">class</span> <span class="nc">SeqEventSink</span> <span class="p">:</span> <span class="n">IEventSink</span>
+<span class="p">{</span>
+                                                    <span class="k">private</span> <span class="k">readonly</span> <span class="n">Logger</span> <span class="n">_log</span><span class="p">;</span>
+
+                                                    <span class="k">public</span> <span class="nf">SeqEventSink</span><span class="p">()</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">_log</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LoggerConfiguration</span><span class="p">()</span>
+                                                    <span class="p">.</span><span class="n">WriteTo</span><span class="p">.</span><span class="n">Seq</span><span class="p">(</span><span class="s">&quot;http://localhost:5341&quot;</span><span class="p">)</span>
+                                                    <span class="p">.</span><span class="n">CreateLogger</span><span class="p">();</span>
+                                                    <span class="p">}</span>
+
+                                                    <span class="k">public</span> <span class="n">Task</span> <span class="nf">PersistAsync</span><span class="p">(</span><span class="n">Event</span> <span class="n">evt</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="k">if</span> <span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">EventType</span> <span class="p">==</span> <span class="n">EventTypes</span><span class="p">.</span><span class="n">Success</span> <span class="p">||</span>
+                                                    <span class="n">evt</span><span class="p">.</span><span class="n">EventType</span> <span class="p">==</span> <span class="n">EventTypes</span><span class="p">.</span><span class="n">Information</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">_log</span><span class="p">.</span><span class="n">Information</span><span class="p">(</span><span class="s">&quot;{Name} ({Id}), Details: {@details}&quot;</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">);</span>
+                                                    <span class="p">}</span>
+                                                    <span class="k">else</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">_log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;{Name} ({Id}), Details: {@details}&quot;</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span>
+                                                    <span class="n">evt</span><span class="p">);</span>
+                                                    <span class="p">}</span>
+
+                                                    <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">CompletedTask</span><span class="p">;</span>
+                                                    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>Add the <code class="docutils literal notranslate"><span class="pre">Serilog.Sinks.Seq</span></code> package to your host to make the above code work.</p>
+                                        </div>
+                                        <div class="section" id="built-in-events">
+                                            <h2>Built-in events</h2>
+                                            <p>The following events are defined in IdentityServer:</p>
+                                            <dl class="docutils">
+                                                <dt><code class="docutils literal notranslate"><span class="pre">ApiAuthenticationFailureEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ApiAuthenticationSuccessEvent</span></code></dt>
+                                                <dd>Gets raised for successful/failed API authentication at the introspection endpoint.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">ClientAuthenticationSuccessEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ClientAuthenticationFailureEvent</span></code></dt>
+                                                <dd>Gets raised for successful/failed client authentication at the token endpoint.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">TokenIssuedSuccessEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">TokenIssuedFailureEvent</span></code></dt>
+                                                <dd>Gets raised for successful/failed attempts to request identity tokens, access tokens, refresh tokens and authorization codes.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">TokenIntrospectionSuccessEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">TokenIntrospectionFailureEvent</span></code></dt>
+                                                <dd>Gets raised for successful token introspection requests.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">TokenRevokedSuccessEvent</span></code></dt>
+                                                <dd>Gets raised for successful token revocation requests.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">UserLoginSuccessEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">UserLoginFailureEvent</span></code></dt>
+                                                <dd>Gets raised by the quickstart UI for successful/failed user logins.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">UserLogoutSuccessEvent</span></code></dt>
+                                                <dd>Gets raised for successful logout requests.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">ConsentGrantedEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">ConsentDeniedEvent</span></code></dt>
+                                                <dd>Gets raised in the consent UI.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">UnhandledExceptionEvent</span></code></dt>
+                                                <dd>Gets raised for unhandled exceptions.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">DeviceAuthorizationFailureEvent</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">DeviceAuthorizationSuccessEvent</span></code></dt>
+                                                <dd>Gets raised for successful/failed device authorization requests.</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="section" id="custom-events">
+                                            <h2>Custom events<a class="headerlink" href="#custom-events" title="Permalink to this headline">¶</a></h2>
+                                            <p>You can create your own events and emit them via our infrastructure.</p>
+                                            <p>
+                                                You need to derive from our base <code class="docutils literal notranslate"><span class="pre">Event</span></code> class which injects contextual information like activity ID, timestamp, etc.
+                                                Your derived class can then add arbitrary data fields specific to the event context:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="k">public</span> <span class="k">class</span> <span class="nc">UserLoginFailureEvent</span> <span class="p">:</span> <span class="n">Event</span>
+<span class="p">{</span>
+                                                    <span class="k">public</span> <span class="nf">UserLoginFailureEvent</span><span class="p">(</span><span class="kt">string</span> <span class="n">username</span><span class="p">,</span> <span class="kt">string</span> <span class="n">error</span><span class="p">)</span>
+                                                    <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">EventCategories</span><span class="p">.</span><span class="n">Authentication</span><span class="p">,</span>
+                                                    <span class="s">&quot;User Login Failure&quot;</span><span class="p">,</span>
+                                                    <span class="n">EventTypes</span><span class="p">.</span><span class="n">Failure</span><span class="p">,</span>
+                                                    <span class="n">EventIds</span><span class="p">.</span><span class="n">UserLoginFailure</span><span class="p">,</span>
+                                                    <span class="n">error</span><span class="p">)</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Username</span> <span class="p">=</span> <span class="n">username</span><span class="p">;</span>
+                                                    <span class="p">}</span>
+
+                                                    <span class="k">public</span> <span class="kt">string</span> <span class="n">Username</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="section" id="sec33">
+                                        <h1>Grant Types</h1>
+                                        <p>
+                                            The OpenID Connect and OAuth 2.0 specifications define so-called grant types (often also called flows - or protocol flows).
+                                            Grant types specify how a client can interact with the token service.
+                                        </p>
+                                        <p>
+                                            You need to specify which grant types a client can use via the <code class="docutils literal notranslate"><span class="pre">AllowedGrantTypes</span></code> property on the <code class="docutils literal notranslate"><span class="pre">Client</span></code> configuration.
+                                            This allows locking down the protocol interactions that are allowed for a given client.
+                                        </p>
+                                        <p>
+                                            A client can be configured to use more than a single grant type (e.g. Authorization Code flow for user centric operations and client credentials for server to server communication).
+                                            The <code class="docutils literal notranslate"><span class="pre">GrantTypes</span></code> class can be used to pick from typical grant type combinations:
+                                        </p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="n">Client</span><span class="p">.</span><span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">CodeAndClientCredentials</span><span class="p">;</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>You can also specify the grant types list manually:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="n">Client</span><span class="p">.</span><span class="n">AllowedGrantTypes</span> <span class="p">=</span>
+<span class="p">{</span>
+                                                <span class="n">GrantType</span><span class="p">.</span><span class="n">Code</span><span class="p">,</span>
+                                                <span class="n">GrantType</span><span class="p">.</span><span class="n">ClientCredentials</span><span class="p">,</span>
+                                                <span class="s">&quot;my_custom_grant_type&quot;</span>
+<span class="p">};</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>While IdentityServer supports all standard grant types, you really only need to know two of them for common application scenarios.</p>
+                                        <div class="section" id="machine-to-machine-communication">
+                                            <h2>Machine to Machine Communication</h2>
+                                            <p>This is the simplest type of communication. Tokens are always requested on behalf of a client, no interactive user is present.</p>
+                                            <p>
+                                                In this scenario, you send a token request to the token endpoint using the <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">credentials</span></code> grant type.
+                                                The client typically has to authenticate with the token endpoint using its client ID and secret.
+                                            </p>
+
+                                        </div>
+                                        <div class="section" id="interactive-clients">
+                                            <h2>Interactive Clients<a class="headerlink" href="#interactive-clients" title="Permalink to this headline">¶</a></h2>
+                                            <p>This is the most common type of client scenario: web applications, SPAs or native/mobile apps with interactive users.</p>
+
+                                            <p>For this type of clients, the <code class="docutils literal notranslate"><span class="pre">authorization</span> <span class="pre">code</span></code> flow was designed. That flow consists of two physical operations:</p>
+                                            <ul class="simple">
+                                                <li>a front-channel step via the browser where all “interactive” things happen, e.g. login page, consent etc. This step results in an authorization code that represents the outcome of the front-channel operation.</li>
+                                                <li>a back-channel step where the authorization code from step 1 gets exchanged with the requested tokens. Confidential clients need to authenticate at this point.</li>
+                                            </ul>
+                                            <p>This flow has the following security properties:</p>
+                                            <ul class="simple">
+                                                <li>no data (besides the authorization code which is basically a random string) gets leaked over the browser channel</li>
+                                                <li>authorization codes can only be used once</li>
+                                                <li>the authorization code can only be turned into tokens when (for confidential clients - more on that later) the client secret is known</li>
+                                            </ul>
+                                            <p>
+                                                This sounds all very good - still there is one problem called code substitution attack.
+                                                There are two modern mitigation techniques for this:
+                                            </p>
+                                            <p><strong>OpenID Connect Hybrid Flow</strong></p>
+                                            <p>
+                                                This uses a response type of <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">id_token</span></code> to add an additional identity token to the response. This token is signed and protected against substitution.
+                                                In addition it contains the hash of the code via the <code class="docutils literal notranslate"><span class="pre">c_hash</span></code> claim. This allows checking that you indeed got the right code (experts call this a detached signature).
+                                            </p>
+                                            <p>This solves the problem but has the following down-sides:</p>
+                                            <ul class="simple">
+                                                <li>the <code class="docutils literal notranslate"><span class="pre">id_token</span></code> gets transmitted over the front-channel and might leak additional (personal identifiable) data</li>
+                                                <li>all the mitigitation steps (e.g. crypto) need to be implemented by the client. This results in more complicated client library implementations.</li>
+                                            </ul>
+                                            <p><strong>RFC 7636 - Proof Key for Code Exchange (PKCE)</strong></p>
+                                            <p>
+                                                This essentially introduces a per-request secret for code flow (please read up on the details <a class="reference external" href="https://tools.ietf.org/html/rfc7636">here</a>).
+                                                All the client has to implement for this, is creating a random string and hashing it using SHA256.
+                                            </p>
+                                            <p>This also solves the substition problem, because the client can prove that it is the same client on front and back-channel, and has the following additional advantages:</p>
+                                            <ul class="simple">
+                                                <li>the client implementation is very simple compared to hybrid flow</li>
+                                                <li>it also solves the problem of the absence of a static secret for public clients</li>
+                                                <li>no additional front-channel response artifacts are needed</li>
+                                            </ul>
+                                            <p><strong>Summary</strong></p>
+                                            <p>
+                                                Interactive clients should use an authorization code-based flow. To protect against code substitution, either hybrid flow or PKCE should be used.
+                                                If PKCE is available, this is the simpler solution to the problem.
+                                            </p>
+                                            <p>
+                                                PKCE is already the official recommendation for <a class="reference external" href="https://tools.ietf.org/html/rfc8252#section-6">native</a> applications
+                                                and <a class="reference external" href="https://tools.ietf.org/html/draft-ietf-oauth-browser-based-apps-03#section-4">SPAs</a> - and with the release of ASP.NET Core 3 also by default supported in the OpenID Connect handler as well.
+                                            </p>
+                                            <p>This is how you would configure an interactive client:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Client</span>
+<span class="p">{</span>
+                                                    <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">,</span>
+
+                                                    <span class="c1">// set client secret for confidential clients</span>
+                                                    <span class="n">ClientSecret</span> <span class="p">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
+
+                                                    <span class="c1">// ...or turn off for public clients</span>
+                                                    <span class="n">RequireClientSecret</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+
+                                                    <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">Code</span><span class="p">,</span>
+                                                    <span class="n">RequirePkce</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">};</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section" id="interactive-clients-without-browsers-or-with-constrained-input-devices">
+                                            <h2>Interactive clients without browsers or with constrained input devices<a class="headerlink" href="#interactive-clients-without-browsers-or-with-constrained-input-devices" title="Permalink to this headline">¶</a></h2>
+                                            <p>This grant type is detailed <a class="reference external" href="https://tools.ietf.org/html/rfc8628">RFC 8628</a>.</p>
+                                            <p>
+                                                This flow outsources user authentication and consent to an external device (e.g. a smart phone).
+                                                It is typically used by devices that don’t have proper keyboards (e.g. TVs, gaming consoles…) and can request both identity and API resources.
+                                            </p>
+                                        </div>
+                                        <div class="section" id="custom-scenarios">
+                                            <h2>Custom scenarios</h2>
+                                            <p>Extension grants allow extending the token endpoint with new grant types.</p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="section" id="sec34">
+                                        <h1>Secrets</h1>
+                                        <p>In certain situations, clients need to authenticate with identityserver, e.g.</p>
+                                        <ul class="simple">
+                                            <li>confidential applications (aka clients) requesting tokens at the token endpoint</li>
+                                            <li>APIs validating reference tokens at the introspection endpoint</li>
+                                        </ul>
+                                        <p>For that purpose you can assign a list of secrets to a client or an API resource.</p>
+                                        <p>
+                                            Secret parsing and validation is an extensibility point in identityserver, out of the box it supports shared secrets
+                                            as well as transmitting the shared secret via a basic authentication header or the POST body.
+                                        </p>
+                                        <div class="section" id="creating-a-shared-secret">
+                                            <h2>Creating a shared secret</h2>
+                                            <p>The following code sets up a hashed shared secret:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">secret</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Secret</span><span class="p">(</span><span class="s">&quot;secret&quot;</span><span class="p">.</span><span class="n">Sha256</span><span class="p">());</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                This secret can now be assigned to either a <code class="docutils literal notranslate"><span class="pre">Client</span></code> or an <code class="docutils literal notranslate"><span class="pre">ApiResource</span></code>.
+                                                Notice that both do not only support a single secret, but multiple. This is useful for secret rollover and rotation:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Client</span>
+<span class="p">{</span>
+                                                    <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;client&quot;</span><span class="p">,</span>
+                                                    <span class="n">ClientSecrets</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Secret</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">secret</span> <span class="p">},</span>
+
+                                                    <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">ClientCredentials</span><span class="p">,</span>
+                                                    <span class="n">AllowedScopes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span>
+                                                    <span class="p">{</span>
+                                                    <span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;api2&quot;</span>
+                                                    <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                In fact you can also assign a description and an expiration date to a secret. The description will be used for logging, and
+                                                the expiration date for enforcing a secret lifetime:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">secret</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Secret</span><span class="p">(</span>
+                                                    <span class="s">&quot;secret&quot;</span><span class="p">.</span><span class="n">Sha256</span><span class="p">(),</span>
+                                                    <span class="s">&quot;2016 secret&quot;</span><span class="p">,</span>
+                                                    <span class="k">new</span> <span class="nf">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">31</span><span class="p">));</span>
+</pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section" id="authentication-using-a-shared-secret">
+                                            <h2>Authentication using a shared secret</h2>
+                                            <p>You can either send the client id/secret combination as part of the POST body:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">POST</span> <span class="p">/</span><span class="n">connect</span><span class="p">/</span><span class="n">token</span>
+
+<span class="n">client_id</span><span class="p">=</span><span class="n">client1</span><span class="p">&amp;</span>
+<span class="n">client_secret</span><span class="p">=</span><span class="n">secret</span><span class="p">&amp;</span>
+<span class="p">...</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>..or as a basic authentication header:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">POST</span> <span class="p">/</span><span class="n">connect</span><span class="p">/</span><span class="n">token</span>
+
+<span class="n">Authorization</span><span class="p">:</span> <span class="n">Basic</span> <span class="n">xxxxx</span>
+
+<span class="p">...</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>You can manually create a basic authentication header using the following C# code:</p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">credentials</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;{0}:{1}&quot;</span><span class="p">,</span> <span class="n">clientId</span><span class="p">,</span> <span class="n">clientSecret</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">headerValue</span> <span class="p">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">credentials</span><span class="p">));</span>
+
+<span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HttpClient</span><span class="p">();</span>
+<span class="n">client</span><span class="p">.</span><span class="n">DefaultRequestHeaders</span><span class="p">.</span><span class="n">Authorization</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AuthenticationHeaderValue</span><span class="p">(</span><span class="s">&quot;Basic&quot;</span><span class="p">,</span> <span class="n">headerValue</span><span class="p">);</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                The <a class="reference external" href="https://github.com/IdentityModel/IdentityModel2">IdentityModel</a> library has helper classes called <code class="docutils literal notranslate"><span class="pre">TokenClient</span></code> and <code class="docutils literal notranslate"><span class="pre">IntrospectionClient</span></code> that encapsulate
+                                                both authentication and protocol messages.
+                                            </p>
+                                        </div>
+                                        <div class="section" id="beyond-shared-secrets">
+                                            <h2>Beyond shared secrets</h2>
+                                            <p>
+                                                There are other techniques to authenticate clients, e.g. based on public/private key cryptography.
+                                                IdentityServer includes support for private key JWT client secrets (see <a class="reference external" href="https://tools.ietf.org/html/rfc7523">RFC 7523</a>).
+                                            </p>
+                                            <p>Secret extensibility typically consists of three things:</p>
+                                            <ul class="simple">
+                                                <li>a secret definition</li>
+                                                <li>a secret parser that knows how to extract the secret from the incoming request</li>
+                                                <li>a secret validator that knows how to validate the parsed secret based on the definition</li>
+                                            </ul>
+                                            <p>
+                                                Secret parsers and validators are implementations of the <code class="docutils literal notranslate"><span class="pre">ISecretParser</span></code> and <code class="docutils literal notranslate"><span class="pre">ISecretValidator</span></code> interfaces.
+                                                To make them available to IdentityServer, you need to register them with the DI container, e.g.:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="n">builder</span><span class="p">.</span><span class="n">AddSecretParser</span><span class="p">&lt;</span><span class="n">JwtBearerClientAssertionSecretParser</span><span class="p">&gt;()</span>
+<span class="n">builder</span><span class="p">.</span><span class="n">AddSecretValidator</span><span class="p">&lt;</span><span class="n">PrivateKeyJwtSecretValidator</span><span class="p">&gt;()</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                Our default private key JWT secret validator expects the full (leaf) certificate as base64 on the secret definition.
+                                                This certificate will then be used to validate the signature on the self-signed JWT, e.g.:
+                                            </p>
+                                            <div class="highlight-csharp notranslate">
+                                                <div class="highlight">
+                                                    <pre><span></span><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Client</span>
+<span class="p">{</span>
+                                                    <span class="n">ClientId</span> <span class="p">=</span> <span class="s">&quot;client.jwt&quot;</span><span class="p">,</span>
+                                                    <span class="n">ClientSecrets</span> <span class="p">=</span>
+                                                    <span class="p">{</span>
+                                                    <span class="k">new</span> <span class="n">Secret</span>
+                                                    <span class="p">{</span>
+                                                    <span class="n">Type</span> <span class="p">=</span> <span class="n">IdentityServerConstants</span><span class="p">.</span><span class="n">SecretTypes</span><span class="p">.</span><span class="n">X509CertificateBase64</span><span class="p">,</span>
+                                                    <span class="n">Value</span> <span class="p">=</span> <span class="s">&quot;MIIDATCCAe2gAwIBAgIQoHUYAquk9rBJcq8W+F0FAzAJBgUrDgMCHQUAMBIxEDAOBgNVBAMTB0RldlJvb3QwHhcNMTAwMTIwMjMwMDAwWhcNMjAwMTIwMjMwMDAwWjARMQ8wDQYDVQQDEwZDbGllbnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDSaY4x1eXqjHF1iXQcF3pbFrIbmNw19w/IdOQxbavmuPbhY7jX0IORu/GQiHjmhqWt8F4G7KGLhXLC1j7rXdDmxXRyVJBZBTEaSYukuX7zGeUXscdpgODLQVay/0hUGz54aDZPAhtBHaYbog+yH10sCXgV1Mxtzx3dGelA6pPwiAmXwFxjJ1HGsS/hdbt+vgXhdlzud3ZSfyI/TJAnFeKxsmbJUyqMfoBl1zFKG4MOvgHhBjekp+r8gYNGknMYu9JDFr1ue0wylaw9UwG8ZXAkYmYbn2wN/CpJl3gJgX42/9g87uLvtVAmz5L+rZQTlS1ibv54ScR2lcRpGQiQav/LAgMBAAGjXDBaMBMGA1UdJQQMMAoGCCsGAQUFBwMCMEMGA1UdAQQ8MDqAENIWANpX5DZ3bX3WvoDfy0GhFDASMRAwDgYDVQQDEwdEZXZSb290ghAsWTt7E82DjU1E1p427Qj2MAkGBSsOAwIdBQADggEBADLje0qbqGVPaZHINLn+WSM2czZk0b5NG80btp7arjgDYoWBIe2TSOkkApTRhLPfmZTsaiI3Ro/64q+Dk3z3Kt7w+grHqu5nYhsn7xQFAQUf3y2KcJnRdIEk0jrLM4vgIzYdXsoC6YO+9QnlkNqcN36Y8IpSVSTda6gRKvGXiAhu42e2Qey/WNMFOL+YzMXGt/nDHL/qRKsuXBOarIb++43DV3YnxGTx22llhOnPpuZ9/gnNY7KLjODaiEciKhaKqt/b57mTEz4jTF4kIg6BP03MUfDXeVlM1Qf1jB43G2QQ19n5lUiqTpmQkcfLfyci2uBZ8BkOhXr3Vk9HIk/xBXQ=&quot;</span>
+                                                    <span class="p">}</span>
+                                                    <span class="p">},</span>
+
+                                                    <span class="n">AllowedGrantTypes</span> <span class="p">=</span> <span class="n">GrantTypes</span><span class="p">.</span><span class="n">ClientCredentials</span><span class="p">,</span>
+                                                    <span class="n">AllowedScopes</span> <span class="p">=</span> <span class="p">{</span> <span class="s">&quot;api1&quot;</span><span class="p">,</span> <span class="s">&quot;api2&quot;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre>
+                                                </div>
+                                            </div>
+                                            <p>You could implement your own secret validator (or extend ours) to implement e.g. chain trust validation instead.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="section" id="sec35">
+                                        <h1>Resource Owner Password Validation</h1>
+                                        <p>If you want to use the OAuth 2.0 resource owner password credential grant (aka <code class="docutils literal notranslate"><span class="pre">password</span></code>), you need to implement and register the <code class="docutils literal notranslate"><span class="pre">IResourceOwnerPasswordValidator</span></code> interface:</p>
+                                        <div class="highlight-csharp notranslate">
+                                            <div class="highlight">
+                                                <pre><span></span><span class="k">public</span> <span class="k">interface</span> <span class="n">IResourceOwnerPasswordValidator</span>
+<span class="p">{</span>
+                                                <span class="c1">/// &lt;summary&gt;</span>
+                                                <span class="c1">/// Validates the resource owner password credential</span>
+                                                <span class="c1">/// &lt;/summary&gt;</span>
+                                                <span class="c1">/// &lt;param name=&quot;context&quot;&gt;The context.&lt;/param&gt;</span>
+                                                <span class="n">Task</span> <span class="nf">ValidateAsync</span><span class="p">(</span><span class="n">ResourceOwnerPasswordValidationContext</span> <span class="n">context</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+                                            </div>
+                                        </div>
+                                        <p>On the context you will find already parsed protocol parameters like <code class="docutils literal notranslate"><span class="pre">UserName</span></code> and <code class="docutils literal notranslate"><span class="pre">Password</span></code>, but also the raw request if you want to look at other input data.</p>
+                                        <p>Your job is then to implement the password validation and set the <code class="docutils literal notranslate"><span class="pre">Result</span></code> on the context accordingly.</p>
+                                    </div>
+
+                                    <div class="section" id="sec36">
+                                        <h1>Refresh Tokens</h1>
+                                        <p>Since access tokens have finite lifetimes, refresh tokens allow requesting new access tokens without user interaction.</p>
+                                        <p>
+                                            Refresh tokens are supported for the following flows: authorization code, hybrid and resource owner password credential flow.
+                                            The clients needs to be explicitly authorized to request refresh tokens by setting <code class="docutils literal notranslate"><span class="pre">AllowOfflineAccess</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+                                        </p>
+                                        <div class="section" id="additional-client-settings">
+                                            <h2>Additional client settings</h2>
+                                            <dl class="docutils">
+                                                <dt><code class="docutils literal notranslate"><span class="pre">AbsoluteRefreshTokenLifetime</span></code></dt>
+                                                <dd>Maximum lifetime of a refresh token in seconds. Defaults to 2592000 seconds / 30 days. Zero allows refresh tokens that, when used with <code class="docutils literal notranslate"><span class="pre">RefreshTokenExpiration</span> <span class="pre">=</span> <span class="pre">Sliding</span></code> only expire after the SlidingRefreshTokenLifetime is passed.</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">SlidingRefreshTokenLifetime</span></code></dt>
+                                                <dd>Sliding lifetime of a refresh token in seconds. Defaults to 1296000 seconds / 15 days</dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">RefreshTokenUsage</span></code></dt>
+                                                <dd>
+                                                    <p class="first"><code class="docutils literal notranslate"><span class="pre">ReUse</span></code> the refresh token handle will stay the same when refreshing tokens</p>
+                                                    <p class="last"><code class="docutils literal notranslate"><span class="pre">OneTime</span></code> the refresh token handle will be updated when refreshing tokens</p>
+                                                </dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">RefreshTokenExpiration</span></code></dt>
+                                                <dd>
+                                                    <p class="first"><code class="docutils literal notranslate"><span class="pre">Absolute</span></code> the refresh token will expire on a fixed point in time (specified by the AbsoluteRefreshTokenLifetime)</p>
+                                                    <p class="last"><code class="docutils literal notranslate"><span class="pre">Sliding</span></code> when refreshing the token, the lifetime of the refresh token will be renewed (by the amount specified in SlidingRefreshTokenLifetime). The lifetime will not exceed <cite>AbsoluteRefreshTokenLifetime</cite>.</p>
+                                                </dd>
+                                                <dt><code class="docutils literal notranslate"><span class="pre">UpdateAccessTokenClaimsOnRefresh</span></code></dt>
+                                                <dd>Gets or sets a value indicating whether the access token (and its claims) should be updated on a refresh token request.</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </section><!--//doc-section-->
+
+
+
+                        </div><!--//content-inner-->
+                        </div><!--//doc-content-->
+                
+
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                               
+                                <a class="nav-link scrollto" href="#Topics<">Topics</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#sec11">Defining identity resources</a>
+
+                                    <a class="nav-link scrollto" href="#sec14">Defining Clients</a>
+
+                                    <a class="nav-link scrollto" href="#sec19">Sign-in</a>
+                                    <a class="nav-link scrollto" href="#sec25">Sign-out</a>
+                                    <a class="nav-link scrollto" href="#sec29">Sign-out of External Identity Providers</a>
+                                    <a class="nav-link scrollto" href="#sec30">Protecting APIs</a>
+                                    <a class="nav-link scrollto" href="#sec31">Logging</a>
+                                    <a class="nav-link scrollto" href="#sec32">Events</a>
+                                    <a class="nav-link scrollto" href="#sec33">Grant Types</a>
+                                    <a class="nav-link scrollto" href="#sec34">Secrets</a>
+                                    <a class="nav-link scrollto" href="#sec35">Resource Owner Password Validation</a>
+                                    <a class="nav-link scrollto" href="#sec36">Refresh Tokens</a>
+                                    
+                                </nav><!--//nav-->
+                                
+
+
+                                <nav class="doc-sub-menu nav flex-column">
+                                   
+                                    
+                                     </nav><!--//nav-->
+                               
+
+
+	                        </nav>
+                        </div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                   
+                </div><!--//promo-block-inner-->  
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+    
+    
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+

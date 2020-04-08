@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 project documentation theme for developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
+      
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    
+</head> 
+
+<body class="body-blue">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Comsoft Identity Server</span><span class="text-bold"> Docs</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Deployment</li>
+                </ol>
+                
+              
+                
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+               
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="Prerequisites" class="doc-section">
+
+                                <h2 class="section-title">Prerequisites</h2>
+                                <div class="section-block">
+                                    <p>
+                                        Comsoft Identity server prerequisites:
+                                    </p>
+                                    <p>
+                                        <ul class="list">
+                                            <li>Windows Server 2012 or 2016</li>
+                                            <li>Internet Information server (IIS)</li>
+                                            <li>SQL Server 2012 or later </li>
+                                            <li>Microsoft SQL Server Management Studio </li>
+                                            <li>.NET Core 2.1 hosting runtime</li>
+                                            <li>SSL Certificate</li>
+
+                                        </ul>
+
+
+                                </div>
+                                
+                            </section><!--//doc-section-->
+
+                            <section id="Fresh" class="doc-section">
+                                <h2 class="section-title">Fresh Deployment</h2>
+
+
+                                <div class="callout-block callout-warning">
+                                    <div class="icon-holder">
+                                        <i class="fas fa-bug"></i>
+                                    </div><!--//icon-holder-->
+                                    <div class="content">
+                                        <h4 class="callout-title">Fresh Deployment</h4>
+                                        <p>This section will describe how to configure and install the application over fresh server only , for regular deployment please refer to section <a href="#Regular">Regular deployment</a></p>
+                                    </div><!--//content-->
+                                </div><!--//callout-block-->
+
+                               
+                                <div id="Certificate" class="section-block">
+                                    <h3 class="block-title">SSL Certificate</h3>
+                                    <p>
+                                        In order to import the certificate you need to access it from the Microsoft Management Console (MMC), then you need to follow the below steps:
+                                    </p>
+                                    <ul>
+                                        <li>Open the MMC (Start > Run > MMC).</li>
+                                        <li>Go to File > Add / Remove Snap In</li>
+                                        <li>Double Click Certificates</li>
+                                        <li>Select Computer Account.</li>
+                                        <li>Select Local Computer > Finish</li>
+                                        <li>Click OK to exit the Snap-In window.</li>
+                                        <li>[+] next to Certificates > Personal > Certificates</li>
+                                        <li>Right click on Certificates and select All Tasks > Import</li>
+                                        <li>Click Next</li>
+                                        <li>Click Browse</li>
+                                        <li> Select the .cer, .crt, or .pfx you would like to import. Click Open.</li>
+                                        <li>Click Next</li>
+                                        <li>Select Automatically select the certificate store based on the type of certificate.</li>
+                                        <li>Click Finish & OK</li>
+                                    </ul>
+                                    <p>The certificate is now visible in IIS.</p>
+
+
+                                </div><!--//section-block-->
+
+
+                                <div id="runtime" class="section-block">
+                                    <h3 class="block-title">.NET core runtime </h3>
+                                    <p>
+                                        For running .Net Core you only need the .Net Core runtime (or the SDK) installed on the production environment.
+                                    </p>
+
+
+                                    <ul>
+                                        <li>
+                                            Download the installer downloads here:
+                                            https://dotnet.microsoft.com/download/dotnet-core/2.1
+                                        </li>
+
+                                        <li>Run the installer and follow the instructions.</li>
+
+                                        <li>
+                                            Use cmd command line to make sure that runtime installed successfully by using "dotnet --info" or "dotnet --version" commands :
+                                            <img class="img-fluid" src="assets/images/demo/ID422.png" alt="elegant icons" />
+                                        </li>
+                                    </ul>
+
+
+                                </div><!--//section-block-->
+                                <div id="iis1" class="section-block">
+                                    <h3 class="block-title">Internet Infromation Service (IIS) features</h3>
+                                    <p>
+                                        Follow the steps below to check and enable IIS as necessary:
+                                    </p>
+
+                                    <ul>
+                                        <li> Open Server Manager</li>
+                                        <li>You can search for it under the Start menu</li>
+                                        <li>In Server Manager, under Quick Start, click “Add roles and features”. The “Add Roles and Features Wizard” window pops up.</li>
+                                        <li>Click Next.</li>
+                                        <li>Under Select installation type, check “Role-based or feature-based installation”.</li>
+                                        <li>Under Select destination server, select the server which you want to enable IIS and click Next.</li>
+                                        <li> Under Server Roles, check “Web Server (IIS)”.</li>
+                                    </ul>
+
+
+                                    <p>
+                                        Using the server manager in windows server make sure that all the below role features are installed :
+                                    </p>
+                                    <ul>
+                                        <li>WIN-2016-02	Web Server (IIS)	Role	Web Server (IIS) </li>
+                                        <li>WIN-2016-02	URL Authorization	Role Service	Web Server (IIS)\Web Server\Security\URL Authorization</li>
+                                        <li>WIN-2016-02	Client Certificate Mapping Authentication	Role Service	Web Server (IIS)\Web Server\Security\Client Certificate Mapping Authentication</li>
+                                        <li>WIN-2016-02	Windows Authentication	Role Service	Web Server (IIS)\Web Server\Security\Windows Authentication</li>
+                                        <li>WIN-2016-02	Basic Authentication	Role Service	Web Server (IIS)\Web Server\Security\Basic Authentication</li>
+                                        <li>WIN-2016-02	Security	Role Service	Web Server (IIS)\Web Server\Security</li>
+                                        <li>WIN-2016-02	Tracing	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Tracing</li>
+                                        <li>WIN-2016-02	Request Monitor	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Request Monitor</li>
+                                        <li>WIN-2016-02	Logging Tools	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Logging Tools</li>
+                                        <li>WIN-2016-02	HTTP Logging	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\HTTP Logging</li>
+                                        <li>WIN-2016-02	Health and Diagnostics	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics</li>
+                                        <li>WIN-2016-02	ISAPI Filters	Role Service	Web Server (IIS)\Web Server\Application Development\ISAPI Filters</li>
+                                        <li>WIN-2016-02	ISAPI Extensions	Role Service	Web Server (IIS)\Web Server\Application Development\ISAPI Extensions</li>
+                                        <li>WIN-2016-02	.NET Extensibility 4.6	Role Service	Web Server (IIS)\Web Server\Application Development\.NET Extensibility 4.6</li>
+                                        <li>WIN-2016-02	ASP.NET 4.6	Role Service	Web Server (IIS)\Web Server\Application Development\ASP.NET 4.6</li>
+                                        <li>WIN-2016-02	Application Development	Role Service	Web Server (IIS)\Web Server\Application Development</li>
+                                        <li>WIN-2016-02	HTTP Redirection	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\HTTP Redirection</li>
+                                        <li>WIN-2016-02	HTTP Errors	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\HTTP Errors</li>
+                                        <li>WIN-2016-02	Directory Browsing	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Directory Browsing</li>
+                                        <li>WIN-2016-02	Default Document	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Default Document</li>
+                                        <li>WIN-2016-02	Static Content	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Static Content</li>
+                                        <li>WIN-2016-02	Common HTTP Features	Role Service	Web Server (IIS)\Web Server\Common HTTP Features</li>
+                                        <li>WIN-2016-02	Dynamic Content Compression	Role Service	Web Server (IIS)\Web Server\Performance\Dynamic Content Compression</li>
+                                        <li>WIN-2016-02	Static Content Compression	Role Service	Web Server (IIS)\Web Server\Performance\Static Content Compression</li>
+                                        <li>WIN-2016-02	Performance	Role Service	Web Server (IIS)\Web Server\Performance</li>
+                                        <li>WIN-2016-02	Web Server	Role Service	Web Server (IIS)\Web Server
+                                        <li>WIN-2016-02	IIS 6 Metabase Compatibility	Role Service	Web Server (IIS)\Management Tools\IIS 6 Management Compatibility\IIS 6 Metabase Compatibility</li>
+                                        <li>WIN-2016-02	IIS 6 Management Compatibility	Role Service	Web Server (IIS)\Management Tools\IIS 6 Management Compatibility</li>
+                                        <li>WIN-2016-02	IIS Management Console	Role Service	Web Server (IIS)\Management Tools\IIS Management Console</li>
+                                        <li>WIN-2016-02	Management Tools	Role Service	Web Server (IIS)\Management Tools</li>
+                                        <li>WIN-2016-02	Request Filtering	Role Service	Web Server (IIS)\Web Server\Security\Request Filtering</li>
+                                        <li>WIN-2016-02	Centralized SSL Certificate Support	Role Service	Web Server (IIS)\Web Server\Security\Centralized SSL Certificate Support</li>
+                                    </ul>
+                                </div>
+
+
+                                <div id="iis2" class="section-block">
+                                    <h3 class="block-title">Internet Infromation Service (IIS) Site</h3>
+
+                                    <p>
+                                        The next step is to create IIS site to host our application:
+                                    </p>
+                                    <ul>
+                                        <li>In IIS, under “Sites”, right click and select “Add Website” to open the Add Website dialog.</li>
+                                        <li>Under Site name, enter “ComsoftIdentityServer”.</li>
+
+                                        <li>Click “Select” to open the “Select Application Pool” dialog and select the “ComsoftIdentityServer” pool and make sure that the .NET CLR version option  value is "No Managed Code".</li>
+                                        <li>Under physical path, click “Browse” and select the path to the published app "C:\Identity Server\IIS files\Identity server Site"</li>
+                                        <li>
+                                            Enter the information for the binding. For more details, see the below screenshot.
+                                            <img class="img-fluid" src="assets/images/demo/ID423.png" alt="elegant icons" />
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                                <div id="Database" class="section-block">
+                                    <h3 class="block-title">SQL server Database</h3>
+                                    <p>Let’s take a look at the tables and talk about each one a bit. We didn’t specify a custom schema so all tables are created in the default “dbo” schema. This can be easily updated later but is out of the scope of this tutorial.</p>
+
+                                    <img class="img-fluid" src="assets/images/demo/ID424.png" alt="elegant icons" />
+
+                                    <p>
+                                        <br />
+                                        Now restore “ComsoftIdentityServer” database from backup database copied from the development environment.
+                                    </p>
+                                </div>
+                                <div id="Published" class="section-block">
+                                    <h3 class="block-title">Published files</h3>
+                                    <p>Copy the published files to the location "C:\Identity Server\IIS files\Identity server Site" on the server and make sure that IIS user granted permission to read/write on the root folder.</p>
+                                </div>
+
+                                <div id="Configuration" class="section-block">
+                                    <h3 class="block-title">Configuration files</h3>
+                                    <p>Open appsettings file and edit the below settings:</p>
+                                    <ul>
+                                        <li>Connection string </li>
+                                        <li>
+                                            Certificate Name: the certificate name represents the thumbprint; you can get the thumbprint value from IIS/root site/server certificate then right click on the targeted certificate and scroll down to thumbprint property then copy the value without spaces, please check the below screenshot.
+                                            <img class="img-fluid" src="assets/images/demo/ID425.png" alt="elegant icons" />
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </section><!--//doc-section-->
+                            
+
+                            <section id="Regular" class="doc-section">
+                                <h2 class="section-title">Regular deployment </h2>
+                                <p>The regular deployment will be very simple, all you need is to copy the published files to “C:\Identity Server\IIS files\Identity server Site” folder except appsettings.json and web.config files .</p>
+
+
+                                <div class="callout-block callout-success">
+                                    <div class="icon-holder">
+                                        <i class="fas fa-thumbs-up"></i>
+                                    </div><!--//icon-holder-->
+                                    <div class="content">
+                                        <h4 class="callout-title">Backup previous build files</h4>
+                                        <p>Make sure to backup all previous build files before replacing the new published files </p>
+                                    </div><!--//content-->
+                                </div><!--//callout-block-->
+                            </section>
+
+                                </div><!--//content-inner-->
+                        </div><!--//doc-content-->
+
+
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#Prerequisites">Prerequisites</a>
+                                <a class="nav-link scrollto" href="#Fresh">Fresh Deployment</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#Certificate">SSL Certificate</a>
+                                    <a class="nav-link scrollto" href="#runtime">.NET core runtime </a>
+                                    <a class="nav-link scrollto" href="#iis1">Internet Infromation Service (IIS) features</a>
+                                    <a class="nav-link scrollto" href="#iis2">Internet Infromation Service (IIS) Site</a>
+                                    <a class="nav-link scrollto" href="#Database">SQL server Database</a>
+                                   <a class="nav-link scrollto" href="#Published">Published files</a>
+                                   <a class="nav-link scrollto" href="#Configuration">Configuration files</a>
+                                </nav><!--//nav-->
+                                <a class="nav-link scrollto" href="#Regular">Regular deployment </a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                   
+                                    
+                                     </nav><!--//nav-->
+                               
+
+
+	                        </nav>
+                        </div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                   
+                </div><!--//promo-block-inner-->  
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+    
+    
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html> 
+
