@@ -53,6 +53,7 @@ namespace IdentityServer
                 context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
 
             }
+            context.Result.Error = OidcConstants.AuthorizeErrors.ConsentRequired;
             return Task.CompletedTask;
         }
     }
@@ -72,6 +73,7 @@ public class CustomAuthorizeRequestValidator : ICustomAuthorizeRequestValidator
 
             context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
         }
+        context.Result.Error = OidcConstants.AuthorizeErrors.ConsentRequired;
         return Task.CompletedTask;
     }
     }
