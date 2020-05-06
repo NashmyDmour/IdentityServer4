@@ -99,6 +99,12 @@
     <Content Include="assets\images\demo\ID48.png" />
     <Content Include="assets\images\demo\ID49.png" />
     <Content Include="assets\images\demo\IDS460.PNG" />
+    <Content Include="assets\images\demo\IDS470.PNG" />
+    <Content Include="assets\images\demo\IDS471.PNG" />
+    <Content Include="assets\images\demo\IDS481.PNG" />
+    <Content Include="assets\images\demo\IDS482.PNG" />
+    <Content Include="assets\images\demo\IDS483.PNG" />
+    <Content Include="assets\images\demo\IDS484.PNG" />
     <Content Include="assets\images\demo\instance-promo.jpg" />
     <Content Include="assets\images\demo\middleware.png" />
     <Content Include="assets\images\demo\protocols.png" />

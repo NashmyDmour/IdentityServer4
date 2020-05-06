@@ -50,12 +50,12 @@
                 <div class="doc-body row">
                     <div class="doc-content col-md-9 col-12 order-1">
 
-                        <div class="content-inner" >
+                        <div class="content-inner">
 
 
-                            <section id="Clients"class="doc-section" >
+                            <section id="Clients" class="doc-section">
                                 <h2 class="section-title">Clients</h2>
-                                <div class="section-block" >
+                                <div class="section-block">
                                     <h3 class="question"><i class="fas fa-question-circle"></i> How can I configure a new client in Identity server using database?</h3>
                                     <div class="answer">
                                         <p>
@@ -156,7 +156,31 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                             <section id="Token" class="doc-section">
                                 <h2 class="section-title">Token</h2>
                                 <div class="section-block">
-                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to change Access token expiration period?  <span class="label label-success">New</span></h3>
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to request token and test it?  <span class="badge badge-success">New Docs version 1.2.0</span></h3>
+                                    <div class="answer">
+                                        <p>The below steps are applicable for resource owner flow, other flow like implicit, authorization code and hybrid need interactive mode to let the user fill his user name and password, interactive mode in postman currently not compatible with the current identity server version./p>
+                                        <p>
+                                            <ul>
+                                                <li> Open postman</li>
+                                                <li>
+                                                    Fill the infromation needed to request a token as follwoing:
+                                                    <img class="img-fluid" src="assets/images/demo/IDS470.png" alt="elegant icons" />
+                                                </li>
+                                                <li>
+                                                    Copy the Access token and test the token by access a demo application deployed in the server as the following:
+                                                    <img class="img-fluid" src="assets/images/demo/IDS471.png" alt="elegant icons" />
+
+
+
+                                                </li>
+
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div><!--//section-block-->
+
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to change Access token expiration period?  </h3>
                                     <div class="answer">
                                         <p>
                                             <ul>
@@ -255,7 +279,7 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                     </div>
                                 </div><!--//section-block-->
                                 <div class="section-block">
-                                    <h3 class="question"><i class="fas fa-question-circle"></i>How to monitor  token expiration?</h3>
+                                    <h3 class="question"><i class="fas fa-question-circle"></i>How to monitor token expiration?</h3>
                                     <div class="answer">
                                         <ul>
                                             <li> Open SQL server</li>
@@ -265,6 +289,55 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                     </div>
                                 </div>
                             </section><!--//doc-section-->
+
+                            <section id="Scope" class="doc-section">
+                                <h2 class="section-title">Scope Management</h2><span class="badge badge-success">New Docs version 1.2.0</span>
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i>How to assign scopes for a client?  </h3>
+                                    <div class="answer">
+                                        
+                                        <ul>
+                                            <li> Open SQL server</li>
+                                            <li>Open ComsoftIdentityServer database</li>
+                                            <li>
+                                                Open Clients table and get the ID as following:
+                                                <img class="img-fluid" src="assets/images/demo/IDS481.png" alt="elegant icons" />
+                                            </li>
+
+                                            <li>Open ClientScopes table and assign the built-in scopes like openid and profile for this client, or you can assign API resources like web_api to this client as following :
+
+                                                <img class="img-fluid" src="assets/images/demo/IDS482.png" alt="elegant icons" />
+
+                                            </li>
+
+                                        </ul>
+                                       
+                                    </div>
+                                </div><!--//section-block-->
+
+                                <div class="section-block">
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to add new API resource like web_api?</h3>
+                                    <div class="answer">
+                                        <p>
+                                            <ul>
+                                                <li>Open SQL server</li>
+                                                <li>Open ComsoftIdentityServer database</li>
+                                                <li> Right click on ApiResources table and choose edit</li>
+                                                <li>
+                                                    Fill a new record with new name like the following record :
+                                                    <img class="img-fluid" src="assets/images/demo/IDS483.png" alt="elegant icons" />
+                                                </li>
+                                                <li> Then Right click on ApiScopes table and choose edit</li>
+                                                <li>
+                                                    Fill a new record with the same name for the same name of API, you need to link the API added in the previous step by filling the ApiresourceId field like the following: 
+                                                    <img class="img-fluid" src="assets/images/demo/IDS484.png" alt="elegant icons" />
+                                                </li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div><!--//section-block-->
+                                
+                            </section>
 
                             <section id="API" class="doc-section">
                                 <h2 class="section-title">API</h2>
@@ -291,14 +364,14 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                             </section><!--//doc-section-->
 
                             <section id="UserAccount" class="doc-section">
-                                <h2 class="section-title">User Account</h2>
+                                <h2 class="section-title">User Account</h2> <span class="badge badge-success">Updated in comsoft identity server 1.3.0 </span>
                                 <div class="section-block">
-                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to Add user account using API ?</h3>
+                                    <h3 class="question"><i class="fas fa-question-circle"></i> How to Add user account using API ?</h3> 
                                     <div class="answer">
                                         <p>
                                             Comsoft Identity server is offering an integration point to add user account by calling the below API end point:
                                         </p>
-                                        <p><i><b>IdentityServerURL</b></i>/account/RegisterUserAsync </p>
+                                        <p><i><b>IdentityServerURL</b></i>/CustomAccount/RegisterUserAsync </p>
                                         <p>This API required to send Username which is the same as email and password . </p>
 
                                     </div>
@@ -323,7 +396,7 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                         <p>
                                             Comsoft Identity server is offering an integration point to change user password by calling the below <strong>Authorized </strong> API end point:
                                         </p>
-                                        <p><i><b>IdentityServerURL</b></i>/account/ChangeUserPasswordAsync </p>
+                                        <p><i><b>IdentityServerURL</b></i>/CustomAccount/ChangeUserPasswordAsync </p>
                                         <p>This API required to send: </p>
                                         <ul>
                                             <li>Username</li>
@@ -347,7 +420,7 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                             </li>
 
                                             <li>
-                                                <p><strong> Reset Password:</strong> The user reset password by calling <i><b>IdentityServerURL</b></i>/account/ResetUserPasswordAsync</p>
+                                                <p><strong> Reset Password:</strong> The user reset password by calling <i><b>IdentityServerURL</b></i>/CustomAccount/ResetUserPasswordAsync</p>
                                                 <p>
                                                     This API required to send the follwoing:
 
@@ -369,7 +442,7 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
 
 
                             <section id="IdentityServerManagement" class="doc-section">
-                                <h2 class="section-title">Identity Server Management</h2><span class="badge badge-success">New</span>
+                                <h2 class="section-title">Identity Server Management</h2>
                                 <div class="section-block">
                                     <h3 class="question"><i class="fas fa-question-circle"></i> Where to check Comsoft Identity Sever Logs?</h3>
                                     <div class="answer">
@@ -417,7 +490,7 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                 </div>
 
                             </section>
-                        
+
                         </div><!--//content-inner-->
                      </div>
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
@@ -425,10 +498,11 @@ SELECT cast(N'' as xml).value('xs:base64Binary(sql:variable("@HASHBYTES"))', 'va
                                         <nav id="doc-menu" class="nav doc-menu flex-column sticky">
                                             <a class="nav-link scrollto" href="#Clients">Clients</a>
                                             <a class="nav-link scrollto" href="#Token">Token</a>
+                                            <a class="nav-link scrollto" href="#Scope">Scope Management</a>
                                             <a class="nav-link scrollto" href="#API">API</a>
                                             <a class="nav-link scrollto" href="#UserAccount">User Account</a>
                                             <a class="nav-link scrollto" href="#IdentityServerManagement">Identity Server Management</a>
-</nav><!--//doc-menu-->
+                                        </nav><!--//doc-menu-->
                                     </div>
                                 </div><!--//doc-sidebar-->
                 </div><!--//doc-body-->  
