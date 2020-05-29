@@ -12,51 +12,51 @@ using System.Threading.Tasks;
 namespace IdentityServer
 {
 
-    public class CustomTokenRequestValidator : IResourceOwnerPasswordValidator
-    {
-        //public UserManager<ApplicationUser> _userManager;
-        ////HttpContext _context;
-        //public CustomTokenRequestValidator(UserManager<ApplicationUser> userManager)
-        //{
-        //    _userManager = userManager;
+    //public class CustomTokenRequestValidator : ResourceOwnerPasswordValidator
+    //{
+    //    //public UserManager<ApplicationUser> _userManager;
+    //    ////HttpContext _context;
+    //    //public CustomTokenRequestValidator(UserManager<ApplicationUser> userManager)
+    //    //{
+    //    //    _userManager = userManager;
 
-        //}
-        //public  Task ValidateAsync(CustomTokenRequestValidationContext context)
-        //{
-        //   var x= context.Result.ValidatedRequest;
+    //    //}
+    //    //public  Task ValidateAsync(CustomTokenRequestValidationContext context)
+    //    //{
+    //    //   var x= context.Result.ValidatedRequest;
 
-        //   // var user =  await _userManager.FindByNameAsync(x.UserName);
+    //    //   // var user =  await _userManager.FindByNameAsync(x.UserName);
 
-        //        if (!context.Result.IsError)
-        //    {
+    //    //        if (!context.Result.IsError)
+    //    //    {
 
-        //        //if (user != null && user.LockoutEnd.HasValue)
+    //    //        //if (user != null && user.LockoutEnd.HasValue)
 
-        //        context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
+    //    //        context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
 
-        //    }
+    //    //    }
 
-        //    return Task.CompletedTask;
-        //}
+    //    //    return Task.CompletedTask;
+    //    //}
 
-        public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
-        {
-            //var x = context.Result.Subject;
+    //    public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
+    //    {
+    //        //var x = context.Result.Subject;
             
-             //var user =  await _userManager.FindByNameAsync(x.UserName);
+    //         //var user =  await _userManager.FindByNameAsync(x.UserName);
 
-            if (!context.Result.IsError)
-            {
+    //        if (!context.Result.IsError)
+    //        {
 
-                //if (user != null && user.LockoutEnd.HasValue)
+    //            //if (user != null && user.LockoutEnd.HasValue)
 
-                context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
+    //            context.Result.Error = OidcConstants.AuthorizeErrors.UnauthorizedClient;
 
-            }
-            context.Result.Error = OidcConstants.AuthorizeErrors.ConsentRequired;
-            return Task.CompletedTask;
-        }
-    }
+    //        }
+    //        context.Result.Error = OidcConstants.AuthorizeErrors.ConsentRequired;
+    //        return Task.CompletedTask;
+    //    }
+    //}
 }
 public class CustomAuthorizeRequestValidator : ICustomAuthorizeRequestValidator
 {

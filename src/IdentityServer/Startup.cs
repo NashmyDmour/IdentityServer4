@@ -22,6 +22,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using MailSenderApp.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Security.Cryptography.X509Certificates;
+using IdentityServer4.Validation;
+using IdentityServer4.AspNetIdentity;
 
 namespace IdentityServer
 {
@@ -61,7 +63,7 @@ namespace IdentityServer
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-                
+
                 // options.UserInteraction.LoginUrl = "/Account/Login";
                 //options.UserInteraction.LogoutUrl = "/Account/Logout";
                 options.Authentication = new AuthenticationOptions()
@@ -69,8 +71,9 @@ namespace IdentityServer
                     CookieLifetime = TimeSpan.FromHours(10), // ID server cookie timeout set to 10 hours
                     CookieSlidingExpiration = true
                 };
-               
+
             })
+            
             .AddConfigurationStore(options =>
             {
                 options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
@@ -80,8 +83,9 @@ namespace IdentityServer
                 options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
                 options.EnableTokenCleanup = true;
             })
+             
             .AddAspNetIdentity<ApplicationUser>();
-
+            services.AddTransient< IResourceOwnerPasswordValidator, IdentityServer.ResourceOwnerPasswordValidator < ApplicationUser >> ();
             if (Environment.IsDevelopment())
             {
                 builder.AddDeveloperSigningCredential();
@@ -117,7 +121,7 @@ namespace IdentityServer
             app.UseStaticFiles();
             // uncomment if you want to support static files xxx
             app.UseIdentityServer();
-        
+            
             app.UseMvcWithDefaultRoute();
         }
 
